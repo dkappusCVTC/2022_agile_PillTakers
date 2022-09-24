@@ -1,0 +1,17 @@
+body {background-color: #D6FFFF;}
+
+.header {
+    text-align: center;
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+}
+
+main {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding-top: 20px;
+}
+
