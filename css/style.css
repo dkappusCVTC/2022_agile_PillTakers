@@ -1,17 +1,212 @@
-body {background-color: #D6FFFF;}
-
-.header {
-    text-align: center;
-    border-bottom: 1px solid black;
-    padding-bottom: 5px;
+body {
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-main {
+#content-section {
+    background-color: white;
+    min-width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+header {
+    background-image: url(../images/medBanner.jpg);
+    background-repeat: no-repeat;
+    min-width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+#content {
+    background-color: White;
+    color: navy;
+    min-width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    width: 60%;
+    height: auto;
+    font-size: 20px;
+}
+
+h1 {
+    font-family: georgia, "Times New Roman", serif;
+    color: #9E7A3D;
+    height: 100px;
+}
+
+h2 {
+    font-size: 32px;
     text-align: center;
 }
+
+h3 {
+    font-size: 24px;
+}
+
+nav {
+    float: none;
+    min-width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    padding: 0;
+}
+
+    nav ul {
+        text-align: center;
+    }
+
+        nav ul li {
+            display: inline-block;
+            background-color: #6bd1e2;
+            text-align: center;
+            padding-top: .1em;
+            padding-bottom: .1em;
+            padding-left: 1em;
+            padding-right: 1em;
+            font-size: 24px;
+        }
+
+    nav a {
+        display: block;
+    }
+
+    nav a {
+        text-decoration: none;
+    }
+
+        nav a:link {
+            color: #9E7A3D;
+        }
+
+        nav a:visited {
+            color: #A58366;
+        }
+
+        nav a:hover, nav a:focus {
+            color: #F5F5DC;
+        }
 
 footer {
     text-align: center;
-    padding-top: 20px;
+    color: navy;
+    background-color: white;
+    min-width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    padding: 0;
 }
 
+body a:link {
+    color: #9E7A3D;
+}
+
+body a:visited {
+    color: #A58366;
+}
+
+body a:hover, nav a:focus {
+    color: #F5F5DC;
+}
+
+
+.classes {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.splash {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.aboutsplash {
+    opacity: .5;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.icon {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+table {
+    margin: auto;
+    width: 80%;
+    color: #000000;
+}
+
+td {
+    padding: 20px;
+    background-color: #9E7A3D;
+}
+
+th {
+    padding: 20px;
+    background-color: #000000;
+}
+
+table a:link {
+    color: #9E7A3D;
+}
+
+table a:visited {
+    color: #A58366;
+}
+
+table a:hover, nav a:focus {
+    color: #F5F5DC;
+}
+
+input[type=text], [type=date], [type=email], [type=submit] {
+    width: auto;
+    background-color: #9E7A3D;
+    border: 3px solid #555;
+    color: #000000;
+}
+
+textarea {
+    background-color: #9E7A3D;
+    border: 3px solid #555;
+    color: #000000;
+}
+
+select {
+    background-color: #9E7A3D;
+    border: 3px solid #555;
+    color: #000000;
+}
+
+label {
+    float: left;
+    text-align: left;
+    width: 150px;
+    padding-right: 10px;
+}
+
+input,
+textarea {
+    display: block;
+    margin-bottom: 20px;
+}
+
+submit {
+    margin-left: 130px;
+}
+
+@media (min-width: 1025px) {
+    body {
+        background-image: url(../images/pilltakerbg.jpg);
+    }
