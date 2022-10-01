@@ -7,52 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-        <header>
-            <h1 class="header">Pill Takers</h1>
-        </header>
-        <nav>
-            <ul>
-                <li><a href="about.html">About/Purpose</a></li>
-                <li><a href="account.html">Create Account</a></li>
-                <li><a href="schedule.html">Schedule</a></li>
-                <li><a href="notifications.html">Notifications</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <main id="content">
-          <form>
+    <header>
+        <h1 class="header">Pill Takers</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="about.html">About/Purpose</a></li>
+            <li><a href="account.html">Create Account</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="notifications.html">Notifications</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <main id="content">
+        <form>
             first name:
             <input type="text" id="firstnametext" size="30">
-            <br>
             last name:
             <input type="text" id="lastnametext" size="30">
-            <br>
             email:
             <input type="text" id="emailtext" size="50">
-            <br>
-          </form>
-          <script>
+        </form>
+        <script>
             function createAccount() {
-              var userEmail = document.getElementById("emailtext").value;
-              var userFirstName = document.getElementById("firstnametext").value;
-              var userLastName = document.getElementById("lastnametext").value;
-          
-              message = "Thank You " + userFirstName + " " + userLastName + "! Please check " + userEmail + " for your first reminder.";
-        
-              document.getElementById("message").innerHTML = message;
-        
+                var userEmail = document.getElementById("emailtext").value;
+                var userFirstName = document.getElementById("firstnametext").value;
+                var userLastName = document.getElementById("lastnametext").value;
+
+                message = "Thank You " + userFirstName + " " + userLastName + "! Please check " + userEmail + " for your first reminder.";
+
+                document.getElementById("message").innerHTML = message;
+
             } // end createAccount()
-          </script>
-          <button onclick="createAccount()">create account</button>
-          <p id="message"></p>
-        </main>
-        <br>
-        <footer>
-            Contact Us: <br>
-            <a href="mailto:kcooper11@student.cvtc.edu">Cooper, Katrina</a> <br>
-            <a href="mailto:dkappus@student.cvtc.edu">Kappus, Danial</a> <br>
-            <a href="mailto:jkocherer@student.cvtc.edu">Kocherer, Jon</a> <br>
-            <a href="mailto:cmacnicol@student.cvtc.edu">Macnicol, Connor</a>
-        </footer>
+        </script>
+        <button onclick="createAccount()">create account</button>
+        <p id="message"></p>
+    </main>
+    <br>
+    <footer>
+        <small>
+            Copyright &copy; 2022 Pill Takers
+            <br>
+            <a href="contact.html">Contact Us</a>
+        </small>
+    </footer>
 </body>
 </html>
