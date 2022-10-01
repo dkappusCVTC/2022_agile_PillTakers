@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Agile Programming - Team Pill Takers</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <h1 class="header">Pill Takers</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="about.html">About/Purpose</a></li>
+            <li><a href="account.html">Create Account</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="notifications.html">Notifications</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <main id="content">
+        <h2>Questions or Comments</h2>
+
+        <p>Have a question? Fill out the following:</p>
+        <p>Required fields are marked with an asterisk *.</p>
+
+        <form method="post" action="https://itsd.cvtc.edu/web1/contact.php">
+
+            <label for="name">* Name:</label>
+            <input required type="text" name="name" id="name">
+
+            <label for="phone_number">Phone Number:</label>
+            <input required type="text" name="phone_number" id="phone_number">
+
+            <label for="email">* Email:</label>
+            <input required type="email" name="email" id="email" placeholder="addicted@pilltakers.com">
+
+            <label for="date">Date:</label>
+            <input type="date" name="date" id="date">
+
+            <label for="class">* Medication:</label>
+            <select required id="class" name="class">
+                <option value="" selected disabled hidden>Choose here</option>
+                <option value="test">Test</option>
+            </select>
+            <p></p>
+            <label for="message">* Message:</label>
+            <textarea required id="message" name="message"></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+    </main>
+    <br>
+    <footer>
+        Contact Us: <br />
+        <a href="mailto:kcooper11@student.cvtc.edu">Cooper, Katrina</a> <br />
+        <a href="mailto:dkappus@student.cvtc.edu">Kappus, Danial</a> <br />
+        <a href="mailto:jkocherer@student.cvtc.edu">Kocherer, Jon</a> <br />
+        <a href="mailto:cmacnicol@student.cvtc.edu">Macnicol, Connor</a>
+    </footer>
+</body>
+</html>
