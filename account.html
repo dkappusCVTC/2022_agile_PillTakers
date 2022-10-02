@@ -35,18 +35,6 @@
             Email:
             <input type="email" id="emailtext" size="50">
         </form>
-        <script>
-            function createAccount() {
-                var userEmail = document.getElementById("emailtext").value;
-                var userFirstName = document.getElementById("firstnametext").value;
-                var userLastName = document.getElementById("lastnametext").value;
-
-                message = "Thank You " + userFirstName + " " + userLastName + "! Please check " + userEmail + " for your first reminder.";
-
-                document.getElementById("message").innerHTML = message;
-
-            } // end createAccount()
-        </script>
         <button onclick="createAccount()">create account</button>
         <p id="message"></p>
     </main>
@@ -58,5 +46,6 @@
             <a href="contact.html">Contact Us</a>
         </small>
     </footer>
+    <script src="js/pilltakers.js"></script>
 </body>
 </html>
