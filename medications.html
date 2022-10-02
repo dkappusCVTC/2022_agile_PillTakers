@@ -22,8 +22,26 @@
         </ul>
     </nav>
     <main id="content">
-        <!-- Place to put your content -->
-        <p>Place to put your content</p>
+        <h2>Add Your Medications</h2>
+        <form>
+            <label for="medNameText">Medication Name:</label>
+            <input type="text" id="medNameText" size="30" name="medNameText">
+            <label for="doseText">Dosage:</label>
+            <input type="text" id="doseText" size="30" name="doseText">
+            <label for="dateTimeText">When to take it:</label>
+            <input type="datetime-local" id="dateTimeText" size="50" name="dateTimeText">
+            How often it needs to be taken:
+            <div class="tabBlock">
+                <label class="labelBlock" for="freqNumber">Every:</label>
+                <input class="inline" type="text" id="freqNumber" size="3" name="freqNumber">
+                <select class="inline" id="freqTime" name="freqTime">
+                    <option value="freqHours">Hours</option>
+                    <option value="freqDays">Days</option>
+                    <option value="freqWeeks">Weeks</option>
+                    <option value="freqMonths">Months</option>
+                </select>
+            </div>
+        </form>
     </main>
     <br>
     <footer>

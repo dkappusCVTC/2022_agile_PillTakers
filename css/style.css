@@ -105,6 +105,21 @@ footer {
     padding: 0;
 }
 
+.inline {
+    display: inline-block;
+}
+
+.tabBlock {
+    margin-left: 1em;
+    margin-top: 1em;
+}
+
+.labelBlock {
+    display: inline-block;
+    text-align: left;
+    width: 60px;
+}
+
 body a:link {
     color: darkslategray;
 }
@@ -171,7 +186,7 @@ table a:hover, nav a:focus {
     color: #F5F5DC;
 }
 
-input[type=text], [type=date], [type=email], [type=submit] {
+input[type=text], [type=date], [type=email], [type=submit], [type=datetime-local] {
     width: auto;
     background-color: #6bd1e2;
     border: 3px solid #555;
