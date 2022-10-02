@@ -76,15 +76,17 @@ function improperInput(inField) {
     return;
 }
 
-medNbr.addEventListener('keyup', function () {
-    // Determine if a integer was entered for medication count
-    if (isNaN(medNbr.value) || medNbr.value < 0) {
-        return improperInput(medNbr);
-    }
-    if (medNbr.value !== '' && medNbr.value !== currentSelect) {
-        currentSelect = medNbr.value;
-        loadNbr = medNbr.value;
-        window.onload = meds(loadNbr);
-    }
-});
+if (medNbr) {
+    medNbr.addEventListener('keyup', function () {
+        // Determine if a integer was entered for medication count
+        if (isNaN(medNbr.value) || medNbr.value < 0) {
+            return improperInput(medNbr);
+        }
+        if (medNbr.value !== '' && medNbr.value !== currentSelect) {
+            currentSelect = medNbr.value;
+            loadNbr = medNbr.value;
+            window.onload = meds(loadNbr);
+        }
+    });
+}
 // medications.html JS Code End
