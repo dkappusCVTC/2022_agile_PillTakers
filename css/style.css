@@ -105,6 +105,14 @@ footer {
     padding: 0;
 }
 
+#medTemplate {
+    display: none;
+}
+
+.labelWidth {
+    width: auto;
+}
+
 .inline {
     display: inline-block;
 }
