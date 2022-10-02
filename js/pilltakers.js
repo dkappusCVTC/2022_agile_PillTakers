@@ -1,8 +1,10 @@
+/* jshint curly: true, esversion: 6, eqeqeq: true, latedef: true, laxbreak: true */
 // account.html JS Code Start
 function createAccount() {
     var userEmail = document.getElementById("emailtext").value;
     var userFirstName = document.getElementById("firstnametext").value;
     var userLastName = document.getElementById("lastnametext").value;
+    var message = '';
 
     message = "Thank You " + userFirstName + " " + userLastName + "! Please check " + userEmail + " for your first reminder.";
 
@@ -15,18 +17,9 @@ function createAccount() {
 var medNbr = document.getElementById('medNumberText');
 var loadNbr = 0;
 var currentSelect = 0;
-medNbr.addEventListener('keyup', function () {
-    // Determine if a integer was entered for medication count
-    if (isNaN(medNbr.value) || medNbr.value < 0) return improperInput(medNbr);
-    if (medNbr.value != '' && medNbr.value != currentSelect) {
-        currentSelect = medNbr.value;
-        loadNbr = medNbr.value;
-        window.onload = meds(loadNbr);
-    }
-});
 
 function meds(inNbr) {
-    if (inNbr != 0) {
+    if (inNbr !== 0) {
         // Remove all form elements, to clear the page
         const el = document.querySelectorAll('.meds');
         Array.prototype.forEach.call(el, function (node) {
@@ -46,12 +39,16 @@ function meds(inNbr) {
             // Loop to change the names of the elements to append the medication number
             for (var j = 0; j < newMed.length; j++) {
                 var theName = newMed[j].name;
-                if (theName) newMed[j].name = theName + counter;
-                if (newMed[j].htmlFor == 'medNbrText') {
+                if (theName) {
+                    newMed[j].name = theName + counter;
+                }
+                if (newMed[j].id === 'medNbrText') {
                     newMed[j].innerHTML = 'Medication #' + (Number(counter) + 1);
                     newMed[j].innerText = 'Medication #' + (Number(counter) + 1);
                 }
-                if (newMed[j].type == 'button' && newMed[j].value == 'Remove Medication') newMed[j].value = newMed[j].value + ' #' + (Number(counter) + 1);
+                if (newMed[j].type === 'button' && newMed[j].value === 'Remove Medication') {
+                    newMed[j].value = newMed[j].value + ' #' + (Number(counter) + 1);
+                }
             }
             var insertHere = document.getElementById('medFields');
             // Adds the Medication form to the page
@@ -70,7 +67,7 @@ function meds(inNbr) {
 
 function saveMeds() {
     const medList = document.querySelectorAll('.meds');
-    alert('You have added ' + (medList.length ? medList.length : '0') + (medList.length == 1 ? ' medication' : ' medications'));
+    alert('You have added ' + (medList.length ? medList.length : '0') + (medList.length === 1 ? ' medication' : ' medications'));
 }
 
 function improperInput(inField) {
@@ -78,4 +75,16 @@ function improperInput(inField) {
     inField.value = '';
     return;
 }
+
+medNbr.addEventListener('keyup', function () {
+    // Determine if a integer was entered for medication count
+    if (isNaN(medNbr.value) || medNbr.value < 0) {
+        return improperInput(medNbr);
+    }
+    if (medNbr.value !== '' && medNbr.value !== currentSelect) {
+        currentSelect = medNbr.value;
+        loadNbr = medNbr.value;
+        window.onload = meds(loadNbr);
+    }
+});
 // medications.html JS Code End
