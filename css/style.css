@@ -5,17 +5,18 @@ body {
     background-size: cover;
 }
 
-#content-section {
-    background-color: white;
-    min-width: auto;
+header {
+    background-image: url(../images/medBanner.jpg);
+    background-repeat: no-repeat;
+    text-align: center;
+    max-width: 1670px;
     margin-left: auto;
     margin-right: auto;
     width: 60%;
 }
 
-header {
-    background-image: url(../images/medBanner.jpg);
-    background-repeat: no-repeat;
+#content-section {
+    background-color: white;
     min-width: auto;
     margin-left: auto;
     margin-right: auto;
@@ -69,9 +70,9 @@ nav {
             text-align: center;
             padding-top: .1em;
             padding-bottom: .1em;
-            padding-left: .5em;
-            padding-right: .5em;
-            font-size: 24px;
+            padding-left: 1em;
+            padding-right: 1em;
+            font-size: 20px;
         }
 
     nav a {
@@ -194,7 +195,7 @@ table a:hover, nav a:focus {
     color: #F5F5DC;
 }
 
-input[type=text], [type=date], [type=email], [type=submit], [type=datetime-local] {
+input[type=text], [type=date], [type=email], [type=password], [type=submit], [type=datetime-local] {
     width: auto;
     background-color: #6bd1e2;
     border: 3px solid #555;
@@ -235,6 +236,47 @@ textarea {
 
 submit {
     margin-left: 130px;
+}
+
+@media (max-width: 480px) {
+    body {
+        background-image: url(../images/pilltakerbg.jpg);
+    }
+}
+
+@media (max-width: 650px) {
+    .classes {
+        display: none;
+    }
+
+    .confused {
+        display: none;
+    }
+
+    .aboutsplash {
+        width: 80%;
+    }
+
+    nav ul li {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1670px) {
+    nav ul li {
+        margin-top: 20px;
+        font-size: 22px;
+    }
+
+    .splash {
+        width: 90%;
+    }
+}
+
+@media (min-width: 481px) {
+    body {
+        background-image: url(../images/pilltakerbg.jpg);
+    }
 }
 
 @media (min-width: 1025px) {
