@@ -67,6 +67,61 @@ function meds(inNbr) {
 
 function saveMeds() {
     const medList = document.querySelectorAll('.meds');
+
+    //Create local storage for medications
+    localStorage.clear();
+    localStorage.setItem('medicineList', '[]');
+    for (let i = 0; i < medList.length; i++) {
+        let medNameText;
+        let dosText;
+        let dateTimeText = 0;
+        let freqNumber = 0;
+        let freqTime;
+
+        for (let j = 0; j < medList[i].childNodes.length; j++) {
+            let childObj = medList[i].childNodes[j];
+            if (childObj.nodeName !== 'INPUT' && childObj.nodeName !== 'DIV') {
+                continue;
+            }
+            if (childObj.id === 'medNameText') {
+                medNameText = childObj.value;
+                continue;
+            }
+            if (childObj.id === 'doseText') {
+                dosText = childObj.value;
+                continue;
+            }
+            if (childObj.id === 'dateTimeText') {
+                dateTimeText = childObj.valueAsNumber;
+                continue;
+            }
+            if (childObj.className === 'tabBlock'){
+                for (let k = 0; k < childObj.childNodes.length; k++) {
+                    let subChildObj = childObj.childNodes[k];
+                    if (subChildObj.nodeName !== 'INPUT' && subChildObj.nodeName !== 'SELECT') {
+                        continue;
+                    }
+                    if (subChildObj.id === 'freqNumber') {
+                        freqNumber = subChildObj.value;
+                    }
+                    if (subChildObj.id === 'freqTime') {
+                        freqTime = subChildObj.value;
+                    }
+                    if (freqNumber && freqTime) {
+                        break;
+                    }
+                }
+            }
+            if (medNameText && dosText && dateTimeText && freqNumber && freqTime) {
+                break;
+            }
+        }
+
+        let old_data = JSON.parse(localStorage.getItem('medicineList'));
+        old_data.push([i, medNameText, dosText, dateTimeText, freqNumber, freqTime]);
+        localStorage.setItem('medicineList', JSON.stringify(old_data));
+    }
+
     alert('You have added ' + (medList.length ? medList.length : '0') + (medList.length === 1 ? ' medication' : ' medications'));
 }
 
