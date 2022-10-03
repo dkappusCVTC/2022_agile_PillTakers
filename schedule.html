@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Agile Programming - Team Pill Takers</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/calendarstyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <h1 class="header">Pill Takers</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About/Purpose</a></li>
+            <li><a href="account.html">Create Account</a></li>
+            <li><a href="medications.html">Enter Medications</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="notifications.html">Notifications</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <main id="content">
+
+        <div id="container">
+            <div id="header">
+                <div id = "monthDisplay"></div>
+
+                <div>
+                    <button id = "backButton">Back</button>
+                    <button id = "nextButton">Next</button>
+                </div>
+            </div>
+
+            <div id="weekdays">
+               <div>Sunday</div>
+               <div>Monday</div>  
+               <div>Tuesday</div>  
+               <div>Wednesday</div>  
+               <div>Thursday</div>  
+               <div>Friday</div>  
+               <div>Saturday</div>       
+            </div>
+
+            <div id="calendar"></div>
+        </div>
+
+        <!--Modals are not shown until js "turns" them on.-->
+
+        <div id="newEventModal">
+            <h2>Add Prescription:</h2>
+
+            <input id="eventTitleInput" placeholder="Prescription:"/>
+
+            <button id="saveButton">Save</button>
+            <button id="cancelButton">Cancel</button>
+        </div>
+
+        <div id="deleteEventModal">
+            <h2>Perscription</h2>
+
+            <p id="eventText"></p>
+
+            <button id="deleteButton">Delete</button>
+            <button id="closeButton">Close</button>
+        </div>
+
+        <div id="modalBackDrop"></div>
+        
+    </main>
+    <br>
+    <footer>
+        <small>
+            Copyright &copy; 2022 Pill Takers
+            <br>
+            <a href="contact.html">Contact Us</a>
+        </small>
+    </footer>
+    <script src="js/calendarscript.js"></script>
+</body>
+</html>
