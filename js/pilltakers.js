@@ -1,10 +1,27 @@
 /* jshint curly: true, esversion: 6, eqeqeq: true, latedef: true, laxbreak: true */
 // account.html JS Code Start
+function newUser(uname, pwd, fname, lname, e_mail) {
+    this.uname = uname;
+    this.pwd = pwd;
+    this.fname = fname;
+    this.lname = lname;
+    this.e_mail = e_mail;
+}
+
+var acctNumber = 0;
+var accounts = [];
+
 function createAccount() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
     var userEmail = document.getElementById("emailtext").value;
     var userFirstName = document.getElementById("firstnametext").value;
     var userLastName = document.getElementById("lastnametext").value;
     var message = '';
+    
+    accounts[acctNumber] = new newUser(username, password, userFirstName, userLastName, userEmail);
+    acctNumber++;
+    localStorage.setItem("accountNumber", accounts);
 
     message = "Thank You " + userFirstName + " " + userLastName + "! Please check " + userEmail + " for your first reminder.";
 
