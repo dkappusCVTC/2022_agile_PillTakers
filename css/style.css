@@ -195,6 +195,13 @@ table a:hover, nav a:focus {
     color: #F5F5DC;
 }
 
+input[type=button] {
+    width: auto;
+    background-color: #6bd1e2;
+    border: 3px solid #555;
+    color: #000000;
+}
+
 input[type=text], [type=date], [type=email], [type=password], [type=submit], [type=datetime-local] {
     width: auto;
     background-color: #6bd1e2;
