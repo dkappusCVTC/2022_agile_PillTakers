@@ -76,14 +76,33 @@ function meds(inNbr) {
     } else {
         // Remove all form elements, to clear the page
         const el = document.querySelectorAll('.meds');
-        Array.prototype.forEach.call(el, function (node) {
-            node.parentNode.removeChild(node);
-        });
+        if (Object.keys(el).length) {
+            Array.prototype.forEach.call(el, function (node) {
+                node.parentNode.removeChild(node);
+            });
+        } 
     }
 }
 
+function improperInput(inField) {
+    if (inField.MedNumber === 'medNbr') {
+        alert('Number of Medications must be greater than 0');
+    } else {
+        alert('Missing required information:\n' + inField.MedNumber + ' - "' + inField.Field + '" is missing!');
+    }
+    return;
+}
+
 function saveMeds() {
+    // Check if the user entered a valid number in the 'Number of medications' field
+    if (medNbr.value === '') {
+        return improperInput({ 'MedNumber': 'medNbr', 'Field': 'Number of Medications' });
+    }
+
     const medList = document.querySelectorAll('.meds');
+
+
+    
 
     //Create local storage for medications
     localStorage.clear();
@@ -97,20 +116,39 @@ function saveMeds() {
 
         for (let j = 0; j < medList[i].childNodes.length; j++) {
             let childObj = medList[i].childNodes[j];
+            let medListNbr = medList[i].id.replace(/\D/g, '');
             if (childObj.nodeName !== 'INPUT' && childObj.nodeName !== 'DIV') {
                 continue;
             }
             if (childObj.id === 'medNameText') {
-                medNameText = childObj.value;
-                continue;
+                if (childObj.value !== '') {
+                    medNameText = childObj.value;
+                    continue;
+                } else {
+                    let medForm = 'Medication #' + (Number(medListNbr) + 1).toString();
+                    return improperInput({ 'MedNumber': medForm, 'Field': 'Medication Name' });
+                }
+
+                
             }
             if (childObj.id === 'doseText') {
-                dosText = childObj.value;
-                continue;
+                if (childObj.value !== '') {
+                    dosText = childObj.value;
+                    continue;
+                } else {
+                    let medForm = 'Medication #' + (Number(medListNbr) + 1).toString();
+                    return improperInput({ 'MedNumber': medForm, 'Field': 'Dosage' });
+                }
+                
             }
             if (childObj.id === 'dateTimeText') {
-                dateTimeText = childObj.valueAsNumber;
-                continue;
+                if (!isNaN(childObj.valueAsNumber)) {
+                    dateTimeText = childObj.valueAsNumber;
+                    continue;
+                } else {
+                    let medForm = 'Medication #' + (Number(medListNbr) + 1).toString();
+                    return improperInput({ 'MedNumber': medForm, 'Field': 'When to take it' });
+                }
             }
             if (childObj.className === 'tabBlock'){
                 for (let k = 0; k < childObj.childNodes.length; k++) {
@@ -119,7 +157,13 @@ function saveMeds() {
                         continue;
                     }
                     if (subChildObj.id === 'freqNumber') {
-                        freqNumber = subChildObj.value;
+                        if (subChildObj.value !== '') {
+                            freqNumber = subChildObj.value;
+                            continue;
+                        } else {
+                            let medForm = 'Medication #' + (Number(medListNbr) + 1).toString();
+                            return improperInput({ 'MedNumber': medForm, 'Field': 'How often it needs to be taken' });
+                        }
                     }
                     if (subChildObj.id === 'freqTime') {
                         freqTime = subChildObj.value;
@@ -139,20 +183,14 @@ function saveMeds() {
         localStorage.setItem('medicineList', JSON.stringify(old_data));
     }
 
-    alert('You have added ' + (medList.length ? medList.length : '0') + (medList.length === 1 ? ' medication' : ' medications'));
-}
-
-function improperInput(inField) {
-    alert('Please enter a medication number greater than 0');
-    inField.value = '';
-    return;
+    alert('You have added ' + medList.length + ' medications');
 }
 
 if (medNbr) {
     medNbr.addEventListener('keyup', function () {
         // Determine if a integer was entered for medication count
-        if (isNaN(medNbr.value) || medNbr.value < 0) {
-            return improperInput(medNbr);
+        if (medNbr.value === '') {
+            window.onload = meds(0);
         }
         if (medNbr.value !== '' && medNbr.value !== currentSelect) {
             currentSelect = medNbr.value;
