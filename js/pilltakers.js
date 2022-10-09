@@ -93,7 +93,7 @@ function improperInput(inField) {
     return;
 }
 
-function saveMeds() {
+function saveMeds(request) {
     // Check if the user entered a valid number in the 'Number of medications' field
     if (medNbr.value === '') {
         return improperInput({ 'MedNumber': 'medNbr', 'Field': 'Number of Medications' });
@@ -107,6 +107,7 @@ function saveMeds() {
     //Create local storage for medications
     localStorage.clear();
     localStorage.setItem('medicineList', '[]');
+    let cal = ics();
     for (let i = 0; i < medList.length; i++) {
         let medNameText;
         let dosText;
@@ -181,9 +182,21 @@ function saveMeds() {
         let old_data = JSON.parse(localStorage.getItem('medicineList'));
         old_data.push([i, medNameText, dosText, dateTimeText, freqNumber, freqTime]);
         localStorage.setItem('medicineList', JSON.stringify(old_data));
+
+        // Add Medication event to ICS file
+        cal.addEvent('Take ' + medNameText, medNameText + ' - ' + dosText, '', Number(dateTimeText), Number(dateTimeText) + 300000);
     }
 
-    alert('You have added ' + medList.length + ' medications');
+    if (request === 'saveMed') {
+        alert('You have added ' + medList.length + ' medications');
+    } else if (request === 'createICS') {
+        let icsDate = 'Calendar_' + (Number(new Date().getMonth()) + 1).toString() + '_' +
+            new Date().getDate().toString() + '_' + new Date().getFullYear().toString().substring(2, 4) +
+            '_' + new Date().getHours().toString() + '_' + new Date().getMinutes().toString() +
+            '_' + new Date().getSeconds().toString();
+        cal.download(icsDate);
+    }
+    
 }
 
 if (medNbr) {
