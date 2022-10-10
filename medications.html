@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1 class="header">Pill Takers</h1>
+        <a href="images/medBanner.jpg"><img src="images/medBanner.jpg" alt="images/medBanner.jpg" class="splash" /></a>
     </header>
     <nav>
         <ul>
@@ -23,6 +23,7 @@
     </nav>
     <main id="content">
         <h2>Add Your Medications</h2>
+<<<<<<< HEAD
         <form>
             <label for="medNameText">Medication Name:</label>
             <input type="text" id="medNameText" size="30" name="medNameText">
@@ -34,6 +35,24 @@
             <div class="tabBlock">
                 <label class="labelBlock" for="freqNumber">Every:</label>
                 <input class="inline" type="text" id="freqNumber" size="3" name="freqNumber">
+=======
+        <label class="labelWidth" for="medNumberText">Number of Medications to Add:</label>
+        <input type="text" id="medNumberText" size="3" name="medNumberText" required="required"
+               oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(.*)/g, '$1').replaceAll(/^0+/g, '');"><br>
+        <div id="medTemplate" class="medTemplate">
+            <label id="medNbrText"></label><br><br>
+            <label for="medNameText">Medication Name:</label>
+            <input type="text" id="medNameText" size="30" name="medNameText" required="required">
+            <label for="doseText">Dosage:</label>
+            <input type="text" id="doseText" size="30" name="doseText" required="required">
+            <label for="dateTimeText">When to take it:</label>
+            <input type="datetime-local" id="dateTimeText" size="50" name="dateTimeText" required="required">
+            How often it needs to be taken:
+            <div class="tabBlock">
+                <label class="labelBlock" for="freqNumber">Every:</label>
+                <input class="inline" type="text" id="freqNumber" size="3" name="freqNumber" 
+                       required="required" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(.*)/g, '$1').replaceAll(/^0+/g, '');" maxlength="3">
+>>>>>>> b636e868764dd72b997e2f0331ab1acdef091537
                 <select class="inline" id="freqTime" name="freqTime">
                     <option value="freqHours">Hours</option>
                     <option value="freqDays">Days</option>
@@ -41,6 +60,18 @@
                     <option value="freqMonths">Months</option>
                 </select>
             </div>
+<<<<<<< HEAD
+=======
+            <input type="submit" value="Remove Medication"
+                   onclick="this.parentNode.parentNode.removeChild(this.parentNode);"><br>
+        </div>
+        <form>
+            <span id="medFields"></span>
+            <input type="submit" value="Save Medication(s)"
+                   onclick="saveMeds('saveMed')">
+            <input type="submit" value="Download ICS"
+                   onclick="saveMeds('createICS')">
+>>>>>>> b636e868764dd72b997e2f0331ab1acdef091537
         </form>
     </main>
     <br>
@@ -51,5 +82,11 @@
             <a href="contact.html">Contact Us</a>
         </small>
     </footer>
+<<<<<<< HEAD
+=======
+    <script src="js/pilltakers.js"></script>
+    <script src="js/ics.js"></script>
+    <script src="js/FileSaver.js"></script>
+>>>>>>> b636e868764dd72b997e2f0331ab1acdef091537
 </body>
 </html>

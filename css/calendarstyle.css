@@ -1,0 +1,271 @@
+body {
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+header {
+  background-image: url(../images/medBanner.jpg);
+  background-repeat: no-repeat;
+  text-align: center;
+  max-width: 1670px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+h1 {
+  font-family: georgia, "Times New Roman", serif;
+  color: darkslategray;
+  height: 100px;
+  font-size: 42px;
+}
+
+h2 {
+  font-size: 32px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+nav {
+  float: none;
+  min-width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  padding: 0;
+}
+
+  nav ul {
+      text-align: center;
+  }
+
+      nav ul li {
+          display: inline-block;
+          background-color: #6bd1e2;
+          text-align: center;
+          padding-top: .1em;
+          padding-bottom: .1em;
+          padding-left: 1em;
+          padding-right: 1em;
+          font-size: 20px;
+      }
+
+  nav a {
+      display: block;
+  }
+
+  nav a {
+      text-decoration: none;
+  }
+
+      nav a:link {
+          color: darkslategray;
+      }
+
+      nav a:visited {
+          color: darkslategray;
+      }
+
+      nav a:hover, nav a:focus {
+          color: white;
+      }
+
+  footer {
+    text-align: center;
+    color: darkslategray;
+    background-color: #6bd1e2;
+    min-width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    padding: 0;
+  }
+
+
+#content {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    background-color: #FFFCFF;
+    color: darkslategray;
+    background-color: White;
+    min-width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    width: 60%;
+    height: auto;
+    font-size: 20px;
+  }
+  button {
+    width: 75px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+  }
+  
+  #header {
+    padding: 10px;
+    color: darkslategray;;
+    font-size: 26px;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: space-between;
+  }
+  #header button {
+    background-color:darkslategray;
+  }
+  #container {
+    width: 770px;
+  }
+  #weekdays {
+    width: 100%;
+    display: flex;
+    color: darkslategray;
+  }
+  #weekdays div {
+    width: 100px;
+    padding: 10px;
+  }
+  #calendar {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .day {
+    width: 100px;
+    padding: 10px;
+    height: 100px;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: white;
+    margin: 5px;
+    box-shadow: 0px 0px 3px #CBD4C2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .day:hover {
+    background-color: #7fcff7;
+  }
+  
+  .day + #currentDay {
+    background-color:#e8f4fa;
+  }
+  .event {
+    font-size: 10px;
+    padding: 3px;
+    background-color: #58bae4;
+    color: white;
+    border-radius: 5px;
+    max-height: 55px;
+    overflow: hidden;
+  }
+
+  /*Important is used to override other styles.*/
+  .blank {
+    cursor: default !important;
+    background-color: #FFFCFF !important;
+    box-shadow: none !important;
+  }
+  #newEventModal, #deleteEventModal {
+    display: none;
+    z-index: 20;
+    padding: 25px;
+    background-color: #e8f4fa;
+    box-shadow: 0px 0px 3px black;
+    border-radius: 5px;
+    width: 350px;
+    top: 100px;
+    left: calc(50% - 175px);
+    position: absolute;
+    font-family: sans-serif;
+  }
+  #eventTitleInput {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 3px gray;
+  }
+  #eventTitleInput.error {
+    border: 2px solid red;
+  }
+  #cancelButton, #deleteButton {
+    background-color: #d36c6c;
+  }
+  #saveButton, #closeButton {
+    background-color: #92a1d1;
+  }
+  #eventText {
+    font-size: 14px;
+  }
+  #modalBackDrop {
+    display: none;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(184, 233, 255, 0.8);
+  }
+  
+  @media (max-width: 480px) {
+    body {
+        background-image: url(../images/pilltakerbg.jpg);
+    }
+}
+
+@media (max-width: 650px) {
+    .classes {
+        display: none;
+    }
+
+    .confused {
+        display: none;
+    }
+
+    .aboutsplash {
+        width: 80%;
+    }
+
+    nav ul li {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1670px) {
+    nav ul li {
+        margin-top: 20px;
+        font-size: 22px;
+    }
+
+    .splash {
+        width: 90%;
+    }
+}
+
+@media (min-width: 481px) {
+    body {
+        background-image: url(../images/pilltakerbg.jpg);
+    }
+}
+
+@media (min-width: 1025px) {
+    body {
+        background-image: url(../images/pilltakerbg.jpg);
+    }
+}
+
