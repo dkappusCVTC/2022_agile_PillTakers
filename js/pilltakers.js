@@ -93,7 +93,7 @@ function improperInput(inField) {
     return;
 }
 
-function saveMeds(request) {
+function processMeds(request) {
     // Check if the user entered a valid number in the 'Number of medications' field
     if (medNbr.value === '') {
         return improperInput({ 'MedNumber': 'medNbr', 'Field': 'Number of Medications' });
@@ -160,7 +160,7 @@ function saveMeds(request) {
                     }
                     if (subChildObj.id === 'freqNumber') {
                         if (subChildObj.value !== '') {
-                            freqNumber = subChildObj.value;
+                            freqNumber = Number(subChildObj.value);
                             continue;
                         } else {
                             let medForm = 'Medication #' + (Number(medListNbr) + 1).toString();
@@ -184,8 +184,51 @@ function saveMeds(request) {
         old_data.push([i, medNameText, dosText, dateTimeText, freqNumber, freqTime]);
         localStorage.setItem('medicineList', JSON.stringify(old_data));
 
+        let freqArray = [];
+        if (freqTime === 'freqHours') {
+            let time = dateTimeText;
+            // Days, Hours, Minutes, Seconds, Milliseconds
+            let week = time + 7 * 24 * 60 * 60 * 1000;
+            let hours = freqNumber * 60 * 60 * 1000;
+            while (week - time >= hours) {
+                freqArray.push(time);
+                time += hours;
+            }
+        } else if (freqTime === 'freqDays') {
+            let time = dateTimeText;
+            // Days, Hours, Minutes, Seconds, Milliseconds
+            let week = time + 7 * 24 * 60 * 60 * 1000;
+            let days = freqNumber * 24 * 60 * 60 * 1000;
+            while (week - time >= days) {
+                freqArray.push(time);
+                time += days;
+            }
+        } else if (freqTime === 'freqWeeks') {
+            let time = dateTimeText;
+            // Month in Milliseconds
+            let month = new Date(time).setMonth(new Date(time).getMonth() + 2);
+            let weeks = freqNumber * 7 * 24 * 60 * 60 * 1000;
+            while (month - time >= weeks) {
+                freqArray.push(time);
+                time += weeks;
+            }
+        } else {
+            let time = dateTimeText;
+            let year = new Date(time).setFullYear(new Date(time).getFullYear() + 1);
+            let month = new Date(time).setMonth(new Date(time).getMonth() + freqNumber);
+            while (month - time <= year - time) {
+                freqArray.push(time);
+                time = month;
+                month = new Date(time).setMonth(new Date(time).getMonth() + freqNumber);
+                
+            }
+        }
+
         // Add Medication event to ICS file
-        cal.addEvent('Take ' + medNameText, medNameText + ' - ' + dosText, '', Number(dateTimeText), Number(dateTimeText) + 300000);
+        for (let i = 0; i < freqArray.length; i++) {
+            cal.addEvent('Take ' + medNameText, medNameText + ' - ' + dosText, '', freqArray[i], freqArray[i] + 300000);
+        }
+        
     }
 
     if (request === 'saveMed') {

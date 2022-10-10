@@ -51,10 +51,13 @@
         </div>
         <form>
             <span id="medFields"></span>
+            <p>Click the <strong>Save Medication(s)</strong> button to save your medications to the application calendar.</p>
             <input type="submit" value="Save Medication(s)"
-                   onclick="saveMeds('saveMed')">
+                   onclick="processMeds('saveMed')">
+            <p>Click the <strong>Download ICS</strong> button to download a calendar file, 
+            that you can use to import your medication schedule into your digital calendar. (ex. Outlook, Google Calendar)</p>
             <input type="submit" value="Download ICS"
-                   onclick="saveMeds('createICS')">
+                   onclick="processMeds('createICS')">
         </form>
     </main>
     <br>
