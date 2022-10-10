@@ -6,13 +6,9 @@ body {
 }
 
 header {
-  background-image: url(../images/medBanner.jpg);
-  background-repeat: no-repeat;
-  text-align: center;
-  max-width: 1670px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
 }
 
 h1 {
@@ -85,6 +81,13 @@ nav {
     width: 60%;
     padding: 0;
   }
+
+.splash {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+}
 
 
 #content {
