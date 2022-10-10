@@ -144,7 +144,8 @@ function saveMeds(request) {
             }
             if (childObj.id === 'dateTimeText') {
                 if (!isNaN(childObj.valueAsNumber)) {
-                    dateTimeText = childObj.valueAsNumber;
+                    let unconvertedTime = new Date(childObj.valueAsNumber);
+                    dateTimeText = new Date(unconvertedTime.getTime() + (unconvertedTime.getTimezoneOffset() * 60 * 1000)).getTime();
                     continue;
                 } else {
                     let medForm = 'Medication #' + (Number(medListNbr) + 1).toString();
