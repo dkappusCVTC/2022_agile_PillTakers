@@ -40,31 +40,31 @@ var text = icons.options[icons.selectedIndex].text;
 // fix this
 function changeIcon() {
   if (icons.options[icons.selectedIndex].text == "007") {
-    mainIcon.src = "/images/007.jpg";
+    mainIcon.src = "images/007.jpg";
   } else if (icons.options[icons.selectedIndex].text == "Afro") {
-    mainIcon.src = "/images/Afro.png";
+    mainIcon.src = "images/Afro.png";
   } else if (icons.options[icons.selectedIndex].text == "Clown") {
-    mainIcon.src = "/images/Clown.png";
+    mainIcon.src = "images/Clown.png";
   } else if (icons.options[icons.selectedIndex].text == "Cowboy") {
-    mainIcon.src = "/images/Cowboy.png";
+    mainIcon.src = "images/Cowboy.png";
   } else if (icons.options[icons.selectedIndex].text == "Doctor") {
-    mainIcon.src = "/images/Doctor.png";
+    mainIcon.src = "images/Doctor.png";
   } else if (icons.options[icons.selectedIndex].text == "Elvis") {
-    mainIcon.src = "/images/Elvis.png";
+    mainIcon.src = "images/Elvis.png";
   } else if (icons.options[icons.selectedIndex].text == "FatherXmas") {
-    mainIcon.src = "/images/FatherXmas.png";
+    mainIcon.src = "images/FatherXmas.png";
   } else if (icons.options[icons.selectedIndex].text == "Ghost") {
-    mainIcon.src = "/images/Ghost.png";
+    mainIcon.src = "images/Ghost.png";
   } else if (icons.options[icons.selectedIndex].text == "Pirate") {
-    mainIcon.src = "/images/Pirate.png";
+    mainIcon.src = "images/Pirate.png";
   } else if (icons.options[icons.selectedIndex].text == "Policeman") {
-    mainIcon.src = "/images/Policeman.png";
+    mainIcon.src = "images/Policeman.png";
   } else if (icons.options[icons.selectedIndex].text == "Superhero") {
-    mainIcon.src = "/images/Superhero.png";
+    mainIcon.src = "images/Superhero.png";
   } else if (icons.options[icons.selectedIndex].text == "TeddyBear") {
-    mainIcon.src = "/images/TeddyBear.png";
+    mainIcon.src = "images/TeddyBear.png";
   } else {
-    mainIcon.src = "/images/add-user.png";
+    mainIcon.src = "images/add-user.png";
   }
 }
 
