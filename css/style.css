@@ -103,17 +103,6 @@ footer {
     padding: 0;
 }
 
-<<<<<<< HEAD
-=======
-#medTemplate {
-    display: none;
-}
-
-.labelWidth {
-    width: auto;
-}
-
->>>>>>> b636e868764dd72b997e2f0331ab1acdef091537
 .inline {
     display: inline-block;
 }
@@ -196,16 +185,6 @@ table a:hover, nav a:focus {
     color: #F5F5DC;
 }
 
-<<<<<<< HEAD
-=======
-input[type=button] {
-    width: auto;
-    background-color: #6bd1e2;
-    border: 3px solid #555;
-    color: #000000;
-}
-
->>>>>>> b636e868764dd72b997e2f0331ab1acdef091537
 input[type=text], [type=date], [type=email], [type=password], [type=submit], [type=datetime-local] {
     width: auto;
     background-color: #6bd1e2;
@@ -295,3 +274,26 @@ submit {
         background-image: url(../images/pilltakerbg.jpg);
     }
 }
+
+<<<<<<< HEAD
+=======
+input[type=button] {
+    width: auto;
+    background-color: #6bd1e2;
+    border: 3px solid #555;
+    color: #000000;
+}
+
+> > > > > > > b636e868764dd72b997e2f0331ab1acdef091537
+
+<<<<<<< HEAD
+=======
+#medTemplate {
+    display: none;
+}
+
+.labelWidth {
+    width: auto;
+}
+
+> > > > > > > b636e868764dd72b997e2f0331ab1acdef091537
