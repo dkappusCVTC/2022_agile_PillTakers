@@ -32,6 +32,24 @@
             <input type="text" id="lastnametext" size="30">
             Email:
             <input type="email" id="emailtext" size="50">
+            Profile Image:
+            <img src="/images/add-user.png" id="mainicon" width="30" height="30" class="mainicon">
+            <select id="icons" name="icons" onclick="changeIcon(this)">
+                <option value="selecticon">select profile icon</option>
+                <option value="007"><img src="/images/007.jpg">007</option>
+                <option value="Afro">Afro</option>
+                <option value="Clown">Clown</option>
+                <option value="Cowboy">Cowboy</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Elvis">Elvis</option>
+                <option value="FatherXmas">FatherXmas</option>
+                <option value="Ghost">Ghost</option>
+                <option value="Pirate">Pirate</option>
+                <option value="Policeman">Policeman</option>
+                <option value="Superhero">Superhero</option>
+                <option value="TeddyBear">TeddyBear</option>
+                
+            </select>
         </form>
         <button onclick="createAccount()">create account</button>
         <p id="message"></p>
