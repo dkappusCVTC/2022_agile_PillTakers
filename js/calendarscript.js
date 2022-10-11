@@ -185,6 +185,7 @@ function openModal(date){
     backDrop.style.display = 'block';
 }
 
+//Commit change.
 
 initButtons();
 onLoad();
