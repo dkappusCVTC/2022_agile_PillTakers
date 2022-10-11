@@ -8,16 +8,14 @@
 </head>
 <body>
     <header>
-        <h1 class="header">Pill Takers</h1>
+        <a href="index.html"><img src="images/medBanner.jpg" alt="images/medBanner.jpg" class="splash" /></a>
     </header>
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About/Purpose</a></li>
             <li><a href="account.html">Create Account</a></li>
             <li><a href="medications.html">Enter Medications</a></li>
             <li><a href="schedule.html">Schedule</a></li>
-            <li><a href="notifications.html">Notifications</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
@@ -25,36 +23,31 @@
         <h2>Questions or Comments</h2>
 
         <p>Have a question? Fill out the following:</p>
-        <p>Required fields are marked with an asterisk *.</p>
 
         <form method="post" action="https://itsd.cvtc.edu/web1/contact.php">
 
-            <label for="name">* Name:</label>
-            <input required type="text" name="name" id="name">
+            <label for="name">Name:</label>
+            <input required type="text" name="name" id="name" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="Enter in a valid name.">
 
             <label for="phone_number">Phone Number:</label>
-            <input required type="text" name="phone_number" id="phone_number">
+            <input required type="text" name="phone_number" id="phone_number" maxlength="10" pattern="[0-9]{10,10}" title="Enter in a valid phone number.">
 
-            <label for="email">* Email:</label>
-            <input required type="email" name="email" id="email" placeholder="addicted@pilltakers.com">
+            <label for="email">Email:</label>
+            <input required type="email" name="email" id="email" placeholder="addicted@pilltakers.com" title="Enter in a valid email.">
 
             <label for="date">Date:</label>
-            <input type="date" name="date" id="date">
+            <input required type="date" name="date" id="date" min="01/01/2022">
 
-            <label for="class">* Medication:</label>
+            <label for="class">Issue Type:</label>
             <select required id="class" name="class">
                 <option value="" selected disabled hidden>Choose here</option>
-                <option value="Haloperidol">Haloperidol</option>
-                <option value="Lactimal">Lactimal</option>
-                <option value="Metoprolol">Metoprolol</option>
-                <option value="Oxybutynin">Oxybutynin</option>
-                <option value="Biotin">Biotin</option>
-                <option value="Simvasiatin">Simvasiatin</option>
-                <option value="Seroquel">Seroquel</option>
-                <option value="Clonazepam">Clonazepam</option>
+                <option value="Account">Account</option>
+                <option value="Schedule">Schedule</option>
+                <option value="Medications">Medications</option>
+                <option value="Other">Other</option>
             </select>
             <p></p>
-            <label for="message">* Message:</label>
+            <label for="message">Message:</label>
             <textarea required id="message" name="message"></textarea>
 
             <input type="submit" value="Submit">

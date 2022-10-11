@@ -8,35 +8,35 @@
 </head>
 <body>
     <header>
-        <h1 class="header">Pill Takers</h1>
+        <a href="index.html"><img src="images/medBanner.jpg" alt="images/medBanner.jpg" class="splash"></a>
     </header>
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About/Purpose</a></li>
             <li><a href="account.html">Create Account</a></li>
             <li><a href="medications.html">Enter Medications</a></li>
             <li><a href="schedule.html">Schedule</a></li>
-            <li><a href="notifications.html">Notifications</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
     <main id="content">
         <h2>Add Your Medications</h2>
         <label class="labelWidth" for="medNumberText">Number of Medications to Add:</label>
-        <input type="text" id="medNumberText" size="3" name="medNumberText"><br>
+        <input type="text" id="medNumberText" size="3" name="medNumberText" required="required"
+               oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(.*)/g, '$1').replaceAll(/^0+/g, '');"><br>
         <div id="medTemplate" class="medTemplate">
             <label id="medNbrText"></label><br><br>
             <label for="medNameText">Medication Name:</label>
-            <input type="text" id="medNameText" size="30" name="medNameText">
+            <input type="text" id="medNameText" size="30" name="medNameText" required="required">
             <label for="doseText">Dosage:</label>
-            <input type="text" id="doseText" size="30" name="doseText">
+            <input type="text" id="doseText" size="30" name="doseText" required="required">
             <label for="dateTimeText">When to take it:</label>
-            <input type="datetime-local" id="dateTimeText" size="50" name="dateTimeText">
+            <input type="datetime-local" id="dateTimeText" size="50" name="dateTimeText" required="required">
             How often it needs to be taken:
             <div class="tabBlock">
                 <label class="labelBlock" for="freqNumber">Every:</label>
-                <input class="inline" type="text" id="freqNumber" size="3" name="freqNumber">
+                <input class="inline" type="text" id="freqNumber" size="3" name="freqNumber" 
+                       required="required" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(.*)/g, '$1').replaceAll(/^0+/g, '');" maxlength="3">
                 <select class="inline" id="freqTime" name="freqTime">
                     <option value="freqHours">Hours</option>
                     <option value="freqDays">Days</option>
@@ -44,13 +44,18 @@
                     <option value="freqMonths">Months</option>
                 </select>
             </div>
-            <input type="button" value="Remove Medication"
+            <input type="submit" value="Remove Medication"
                    onclick="this.parentNode.parentNode.removeChild(this.parentNode);"><br>
         </div>
         <form>
             <span id="medFields"></span>
-            <input type="button" value="Save Medication(s)"
-                   onclick="saveMeds()">
+            <p>Click the <strong>Save Medication(s)</strong> button to save your medications to the application calendar.</p>
+            <input type="submit" value="Save Medication(s)"
+                   onclick="processMeds('saveMed')">
+            <p>Click the <strong>Download ICS</strong> button to download a calendar file, 
+            that you can use to import your medication schedule into your digital calendar. (ex. Outlook, Google Calendar)</p>
+            <input type="submit" value="Download ICS"
+                   onclick="processMeds('createICS')">
         </form>
     </main>
     <br>
@@ -61,6 +66,8 @@
             <a href="contact.html">Contact Us</a>
         </small>
     </footer>
-    <script src="js/pilltakers.js"></script>
+    <script src="js/medications.js"></script>
+    <script src="js/ics.js"></script>
+    <script src="js/FileSaver.js"></script>
 </body>
 </html>

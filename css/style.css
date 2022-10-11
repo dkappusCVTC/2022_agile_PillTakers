@@ -6,14 +6,11 @@ body {
 }
 
 header {
-    background-image: url(../images/medBanner.jpg);
-    background-repeat: no-repeat;
-    text-align: center;
-    max-width: 1670px;
     margin-left: auto;
     margin-right: auto;
-    width: 60%;
+    width:80%;
 }
+
 
 #content-section {
     background-color: white;
@@ -152,6 +149,7 @@ body a:hover, nav a:focus {
     display: block;
     margin-right: auto;
     margin-left: auto;
+    width:80%;
 }
 
 .aboutsplash {
@@ -193,6 +191,13 @@ table a:visited {
 
 table a:hover, nav a:focus {
     color: #F5F5DC;
+}
+
+input[type=button] {
+    width: auto;
+    background-color: #6bd1e2;
+    border: 3px solid #555;
+    color: #000000;
 }
 
 input[type=text], [type=date], [type=email], [type=password], [type=submit], [type=datetime-local] {
@@ -269,7 +274,7 @@ submit {
     }
 
     .splash {
-        width: 90%;
+        width: 80%;
     }
 }
 

@@ -8,32 +8,53 @@
 </head>
 <body>
     <header>
-        <h1 class="header">Pill Takers</h1>
+        <a href="index.html"><img src="images/medBanner.jpg" alt="images/medBanner.jpg" class="splash" /></a>
     </header>
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About/Purpose</a></li>
             <li><a href="account.html">Create Account</a></li>
             <li><a href="medications.html">Enter Medications</a></li>
             <li><a href="schedule.html">Schedule</a></li>
-            <li><a href="notifications.html">Notifications</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
     <main id="content">
         <h2>Create your account</h2>
         <form>
-            Username:
-            <input type="text" id="username" size="30">
-            Password:
-            <input type="password" id="password" size="30">
-            First Name:
-            <input type="text" id="firstnametext" size="30">
-            Last Name:
-            <input type="text" id="lastnametext" size="30">
-            Email:
-            <input type="email" id="emailtext" size="50">
+            <label for="username">Username:</label>
+            <input required type="text" name="username" id="username" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="enter a username">
+
+            <label for="password">Password:</label>
+            <input required type="password" name="password" id="password" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="enter a password">
+
+            <label for="firstname">First Name:</label>
+            <input required type="text" name="firstname" id="firstnametext" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="enter first name">
+
+            <label for="lastname">Last Name:</label>
+            <input required type="text" name="lastname" id="lastnametext" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="enter last name">
+
+            <label for="email">Email:</label>
+            <input required type="email" name="email" id="emailtext" placeholder="addicted@pilltakers.com" title="enter a valid email">
+
+            Profile Image:
+            <img src="images/add-user.png" id="mainicon" width="30" height="30" class="mainicon">
+            <select id="icons" name="icons" onclick="changeIcon(this)">
+                <option value="selecticon">select profile icon</option>
+                <option value="007"><img src="images/007.jpg">007</option>
+                <option value="Afro">Afro</option>
+                <option value="Clown">Clown</option>
+                <option value="Cowboy">Cowboy</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Elvis">Elvis</option>
+                <option value="FatherXmas">FatherXmas</option>
+                <option value="Ghost">Ghost</option>
+                <option value="Pirate">Pirate</option>
+                <option value="Policeman">Policeman</option>
+                <option value="Superhero">Superhero</option>
+                <option value="TeddyBear">TeddyBear</option>
+                
+            </select>
         </form>
         <button onclick="createAccount()">create account</button>
         <p id="message"></p>

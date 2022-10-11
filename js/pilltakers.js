@@ -1,92 +1,76 @@
 /* jshint curly: true, esversion: 6, eqeqeq: true, latedef: true, laxbreak: true */
 // account.html JS Code Start
+function newUser(uname, pwd, fname, lname, e_mail, icon) {
+    this.uname = uname;
+    this.pwd = pwd;
+    this.fname = fname;
+    this.lname = lname;
+    this.e_mail = e_mail;
+    this.icon = icon;
+}
+
+var acctNumber = 0;
+var accounts = [];
+
 function createAccount() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
     var userEmail = document.getElementById("emailtext").value;
     var userFirstName = document.getElementById("firstnametext").value;
     var userLastName = document.getElementById("lastnametext").value;
     var message = '';
-
-    message = "Thank You " + userFirstName + " " + userLastName + "! Please check " + userEmail + " for your first reminder.";
+    
+    changeIcon();
+    
+    if (username == "" || password == "" || userFirstName == "" || userLastName == "" || userEmail == "") {
+      alert("Please enter the required information.");
+      message = "";
+    } else {
+      message = "Thank You " + userFirstName + " " + userLastName + "! Please check " + userEmail + " for your first reminder.";
+    }
+    
+    accounts[acctNumber] = new newUser(username, password, userFirstName, userLastName, userEmail, mainIcon);
+    acctNumber++;
+    localStorage.setItem("accountNumber", accounts);
 
     document.getElementById("message").innerHTML = message;
 
 } // end createAccount()
+// choose profile icon
+var mainIcon = document.getElementById("mainicon");
+var icons = document.getElementById("icons");
+var value = icons.value;
+var text = icons.options[icons.selectedIndex].text;
+
+// fix this
+function changeIcon() {
+  if (icons.options[icons.selectedIndex].text == "007") {
+    mainIcon.src = "images/007.jpg";
+  } else if (icons.options[icons.selectedIndex].text == "Afro") {
+    mainIcon.src = "images/Afro.png";
+  } else if (icons.options[icons.selectedIndex].text == "Clown") {
+    mainIcon.src = "images/Clown.png";
+  } else if (icons.options[icons.selectedIndex].text == "Cowboy") {
+    mainIcon.src = "images/Cowboy.png";
+  } else if (icons.options[icons.selectedIndex].text == "Doctor") {
+    mainIcon.src = "images/Doctor.png";
+  } else if (icons.options[icons.selectedIndex].text == "Elvis") {
+    mainIcon.src = "images/Elvis.png";
+  } else if (icons.options[icons.selectedIndex].text == "FatherXmas") {
+    mainIcon.src = "images/FatherXmas.png";
+  } else if (icons.options[icons.selectedIndex].text == "Ghost") {
+    mainIcon.src = "images/Ghost.png";
+  } else if (icons.options[icons.selectedIndex].text == "Pirate") {
+    mainIcon.src = "images/Pirate.png";
+  } else if (icons.options[icons.selectedIndex].text == "Policeman") {
+    mainIcon.src = "images/Policeman.png";
+  } else if (icons.options[icons.selectedIndex].text == "Superhero") {
+    mainIcon.src = "images/Superhero.png";
+  } else if (icons.options[icons.selectedIndex].text == "TeddyBear") {
+    mainIcon.src = "images/TeddyBear.png";
+  } else {
+    mainIcon.src = "images/add-user.png";
+  }
+}
+
 // account.html JS Code End
-
-// medications.html JS Code Start
-var medNbr = document.getElementById('medNumberText');
-var loadNbr = 0;
-var currentSelect = 0;
-
-function meds(inNbr) {
-    if (inNbr !== 0) {
-        // Remove all form elements, to clear the page
-        const el = document.querySelectorAll('.meds');
-        Array.prototype.forEach.call(el, function (node) {
-            node.parentNode.removeChild(node);
-        });
-        var counter = 0;
-        let countMed = Number(counter) + Number(inNbr);
-        for (let i = counter; i < countMed; i++) {
-            // Clones the template to an object variable
-            var newMeds = document.getElementById('medTemplate').cloneNode(true);
-            // Sets new DIV id's and class for each medication form
-            newMeds.id = 'newMed' + counter;
-            newMeds.className = 'meds';
-            // Changes the style of Medication form so that it can be visible when inserted
-            newMeds.style.display = 'block';
-            var newMed = newMeds.childNodes;
-            // Loop to change the names of the elements to append the medication number
-            for (var j = 0; j < newMed.length; j++) {
-                var theName = newMed[j].name;
-                if (theName) {
-                    newMed[j].name = theName + counter;
-                }
-                if (newMed[j].id === 'medNbrText') {
-                    newMed[j].innerHTML = 'Medication #' + (Number(counter) + 1);
-                    newMed[j].innerText = 'Medication #' + (Number(counter) + 1);
-                }
-                if (newMed[j].type === 'button' && newMed[j].value === 'Remove Medication') {
-                    newMed[j].value = newMed[j].value + ' #' + (Number(counter) + 1);
-                }
-            }
-            var insertHere = document.getElementById('medFields');
-            // Adds the Medication form to the page
-            insertHere.parentNode.insertBefore(newMeds, insertHere);
-            counter++;
-        }
-
-    } else {
-        // Remove all form elements, to clear the page
-        const el = document.querySelectorAll('.meds');
-        Array.prototype.forEach.call(el, function (node) {
-            node.parentNode.removeChild(node);
-        });
-    }
-}
-
-function saveMeds() {
-    const medList = document.querySelectorAll('.meds');
-    alert('You have added ' + (medList.length ? medList.length : '0') + (medList.length === 1 ? ' medication' : ' medications'));
-}
-
-function improperInput(inField) {
-    alert('Please enter a medication number greater than 0');
-    inField.value = '';
-    return;
-}
-
-if (medNbr) {
-    medNbr.addEventListener('keyup', function () {
-        // Determine if a integer was entered for medication count
-        if (isNaN(medNbr.value) || medNbr.value < 0) {
-            return improperInput(medNbr);
-        }
-        if (medNbr.value !== '' && medNbr.value !== currentSelect) {
-            currentSelect = medNbr.value;
-            loadNbr = medNbr.value;
-            window.onload = meds(loadNbr);
-        }
-    });
-}
-// medications.html JS Code End
