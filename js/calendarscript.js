@@ -9,7 +9,10 @@ const calendar = document.getElementById('calendar');
 const newEventModal = document.getElementById('newEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
+const eventTitleInputEdit = document.getElementById('eventTitleInputEdit');
 const deleteEventModal = document.getElementById('deleteEventModal');
+const outputStorage = document.getElementById('outputStorage');
+const eventText = document.getElementById('eventText');
 
 //On load display calendar
 function onLoad() {
@@ -76,8 +79,6 @@ function onLoad() {
         calendar.appendChild(dayBox);
     }
 
-    console.log(leftoverDays);
-
     //Split date to display month and year in the header div.
     document.getElementById('monthDisplay').innerText = `${date.toLocaleDateString('en-us',{month:"long"})} ${year}`;
 }
@@ -108,10 +109,40 @@ function saveEvent(){
         eventTitleInput.classList.add('error');
     }
 }
+//
+function addEvent(){
+    if(eventTitleInputEdit.value){
+        eventTitleInputEdit.classList.remove('error');
+
+        events.push({date:clicked,title:eventTitleInputEdit.value,});
+
+        localStorage.setItem('events',JSON.stringify(events));
+
+        for (var i = 0;  i < localStorage.length; i++){
+            //Clears the list so multiple displays of the same instance do not occur. 
+            while(outputStorage.firstChild){
+                outputStorage.removeChild(outputStorage.firstChild);
+            }
+            outputStorage.append(localStorage.getItem(localStorage.key(i)));
+        }
+
+        eventTitleInputEdit.value = "";
+
+        closeModal();
+    }else{
+        eventTitleInputEdit.classList.add('error');
+    }
+}
 
 function deleteEvent(){
     events = events.filter(e => e.date !== clicked);
     localStorage.setItem('events', JSON.stringify(events));
+    localStorage.clear();
+
+    while(outputStorage.firstChild){
+        outputStorage.removeChild(outputStorage.firstChild);
+    }
+
     closeModal();
 }
 
@@ -127,6 +158,7 @@ function initButtons(){
         onLoad();
     });
 
+    document.getElementById('saveButtonEdit').addEventListener('click',addEvent);
     document.getElementById('saveButton').addEventListener('click', saveEvent);
     document.getElementById('cancelButton').addEventListener('click', closeModal);
 
@@ -140,14 +172,19 @@ function openModal(date){
 
     const eventForDay = events.find(e => e.date === clicked);
 
+    console.log(eventForDay);
+
     //If a perscription already exists on the given day, it will note a perscription is already entered for that day. 
     if(eventForDay){
         document.getElementById('eventText').innerText = eventForDay.title;
+
         deleteEventModal.style.display = 'block';
     }else{
         newEventModal.style.display = 'block';
     }
     backDrop.style.display = 'block';
 }
+
+
 initButtons();
 onLoad();
