@@ -22,11 +22,16 @@ function createAccount() {
     
     changeIcon();
     
+    if (username == "" || password == "" || userFirstName == "" || userLastName == "" || userEmail == "") {
+      alert("Please enter the required information.");
+      message = "";
+    } else {
+      message = "Thank You " + userFirstName + " " + userLastName + "! Please check " + userEmail + " for your first reminder.";
+    }
+    
     accounts[acctNumber] = new newUser(username, password, userFirstName, userLastName, userEmail, mainIcon);
     acctNumber++;
     localStorage.setItem("accountNumber", accounts);
-
-    message = "Thank You " + userFirstName + " " + userLastName + "! Please check " + userEmail + " for your first reminder.";
 
     document.getElementById("message").innerHTML = message;
 
