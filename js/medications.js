@@ -74,8 +74,10 @@ function processMeds(request) {
 
 
     //Create local storage for medications
-    localStorage.clear();
-    localStorage.setItem('medicineList', '[]');
+    //localStorage.clear();
+    if (localStorage.getItem('events') === null) {
+        localStorage.setItem('events', '[]');
+    }
     let cal = ics();
     for (let i = 0; i < medList.length; i++) {
         let medNameText;
@@ -149,10 +151,6 @@ function processMeds(request) {
             }
         }
 
-        let old_data = JSON.parse(localStorage.getItem('medicineList'));
-        old_data.push([i, medNameText, dosText, dateTimeText, freqNumber, freqTime]);
-        localStorage.setItem('medicineList', JSON.stringify(old_data));
-
         let freqArray = [];
         if (freqTime === 'freqHours') {
             let time = dateTimeText;
@@ -192,6 +190,11 @@ function processMeds(request) {
 
             }
         }
+
+        let old_data = JSON.parse(localStorage.getItem('events'));
+        //old_data.push([i, medNameText, dosText, dateTimeText, freqNumber, freqTime]);
+        old_data.push({ title: medNameText, dose: dosText, date: dateTimeText, freq: freqNumber, freqWhen: freqTime });
+        localStorage.setItem('events', JSON.stringify(old_data));
 
         // Add Medication event to ICS file
         for (let i = 0; i < freqArray.length; i++) {
