@@ -30,6 +30,22 @@ function timeConvert(t) {
 
     return `${hh.substring(hh.length - 2)}:${mm.substring(mm.length - 2)}`;
 }
+
+function loadTestData() {
+    // Load local storage with test data
+    if (localStorage.getItem('events') === null) {
+        localStorage.setItem('events', JSON.stringify([
+            { "title": "Paxil", "dose": "1 Pill", "date": 1665752400000, "freq": 1, "freqWhen": "freqHours" },
+            { "title": "Viagra", "dose": "1 Pill", "date": 1665748800000, "freq": 1, "freqWhen": "freqHours" },
+            { "title": "Concerta", "dose": "1 Pill", "date": 1665749700000, "freq": 1, "freqWhen": "freqHours" },
+            { "title": "Aleve", "dose": "1 Pill", "date": 1665753300000, "freq": 1, "freqWhen": "freqHours" },
+            { "title": "Focus Factor", "dose": "1 Pill", "date": 1665762600000, "freq": 1, "freqWhen": "freqHours" },
+            { "title": "MultiVitamin", "dose": "1 Pill", "date": 1665763500000, "freq": 1, "freqWhen": "freqHours" }
+        ])
+        );
+        location.reload();
+    }
+}
 //On load display calendar
 function onLoad() {
 
@@ -80,11 +96,19 @@ function onLoad() {
             const eventForDay = events.filter(e => dateConvert(e.date) === dayString);
 
             if (eventForDay.length) {
+                eventForDay.sort(function (a, b) { return a.date - b.date });
+                let remainingEvents = 0;
+                if (eventForDay.length > 3) {
+                    remainingEvents = eventForDay.length - 3;
+                }
                 for (let z = 0; z < eventForDay.length; z++) {
                     const eventDiv = document.createElement('div');
-                    eventDiv.classList.add('event');
-                    eventDiv.innerText = timeConvert(eventForDay[z].date) + '-' + eventForDay[z].title;
+                    eventDiv.classList.add(z !== 3 ? 'event' : 'moreEvents');
+                    eventDiv.innerText = z === 3 ? '+' + remainingEvents.toString() + ' more events' : timeConvert(eventForDay[z].date) + '-' + eventForDay[z].title;
                     dayBox.appendChild(eventDiv);
+                    if (z === 3) {
+                        break;
+                    }
                 }
             }
 
@@ -204,6 +228,6 @@ function openModal(date){
 }
 
 //Commit change.
-
+loadTestData();
 initButtons();
 onLoad();

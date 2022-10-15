@@ -117,7 +117,7 @@ nav {
   
   #header {
     padding: 10px;
-    color: darkslategray;;
+    color: darkslategray;
     font-size: 26px;
     font-family: sans-serif;
     display: flex;
@@ -173,6 +173,16 @@ nav {
     max-height: 55px;
     overflow: hidden;
   }
+
+.moreEvents {
+    font-size: 10px;
+    padding: 3px;
+    background-color: #CBC3E3;
+    color: black;
+    border-radius: 5px;
+    max-height: 55px;
+    overflow: hidden;
+}
 
   /*Important is used to override other styles.*/
   .blank {
