@@ -27,6 +27,12 @@
 
         <form method="post" action="https://formsubmit.co/pilltakers@gmail.com">
 
+            <!-- Honeypot-->
+            <input type="text" name="_honey" style="display: none;">
+
+            <!--Disable Captcha -->
+            <input type="hidden" name="_captcha" value="false">
+
             <label for="name">Name:</label>
             <input required type="text" name="name" id="name" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="Enter in a valid name.">
 
