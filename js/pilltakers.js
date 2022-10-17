@@ -26,12 +26,13 @@ function createAccount() {
       alert("Please enter the required information.");
       message = "";
     } else {
-      message = "Thank You " + userFirstName + " " + userLastName + "! Please check " + userEmail + " for your first reminder.";
+      message = "Thank You " + userFirstName + " " + userLastName + "! Click Enter Medications to add your prescriptions.";
     }
     
     accounts[acctNumber] = new newUser(username, password, userFirstName, userLastName, userEmail, mainIcon);
     acctNumber++;
-    localStorage.setItem("accountNumber", accounts);
+    user = JSON.stringify(accounts);
+    localStorage.setItem("user", user);
 
     document.getElementById("message").innerHTML = message;
 
@@ -72,5 +73,26 @@ function changeIcon() {
     mainIcon.src = "images/add-user.png";
   }
 }
+function saveNewAcctInfo() {
 
+// get current info
+const user = JSON.parse(localStorage.getItem("user"));
+console.log(user.uname);
+
+var nusername = document.getElementById("newun").value;
+var npassword = document.getElementById("newpw").value;
+var nuserEmail = document.getElementById("newemail").value;
+var nuserFirstName = document.getElementById("newfn").value;
+var nuserLastName = document.getElementById("newln").value;
+
+if (nusername == "" || npassword == "" || nuserFirstName == "" || nuserLastName == "" || nuserEmail == "") {
+  alert("Please enter the required information or go back to cancel.");
+} else {
+ //save new
+ var nuser = new newUser(nusername, npassword, nuserFirstName, nuserLastName, nuserEmail);
+  
+ localStorage.setItem("editinfo", nuser);
+ document.getElementById("currentacctinfo").innerHTML = "Current: " + JSON.stringify(nuser);
+ document.getElementById("thankyou").innerHTML = "Saved!";
+}
 // account.html JS Code End
