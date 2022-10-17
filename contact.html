@@ -30,8 +30,11 @@
             <!-- Honeypot-->
             <input type="text" name="_honey" style="display: none;">
 
-            <!--Disable Captcha -->
+            <!-- Disable Captcha -->
             <input type="hidden" name="_captcha" value="false">
+
+            <!-- Sends the user to a success page after they send the email -->
+            <input type="hidden" name="_next" value="https://dkappuscvtc.github.io/2022_agile_PillTakers/success.html">
 
             <label for="username">User Name:</label>
             <input required type="text" name="Username" id="username" maxlength="32" pattern="[A-Za-z0-9]{1,32}" title="Enter in a valid user name.">
