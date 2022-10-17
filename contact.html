@@ -33,20 +33,26 @@
             <!--Disable Captcha -->
             <input type="hidden" name="_captcha" value="false">
 
-            <label for="name">Name:</label>
-            <input required type="text" name="name" id="name" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="Enter in a valid name.">
+            <label for="username">User Name:</label>
+            <input required type="text" name="Username" id="username" maxlength="32" pattern="[A-Za-z0-9]{1,32}" title="Enter in a valid user name.">
+
+            <label for="name">First Name:</label>
+            <input required type="text" name="First&nbsp;Name" id="name" maxlength="32" pattern="[A-Za-z]{1,32}" title="Enter in a valid name.">
+
+            <label for="name">Last Name:</label>
+            <input required type="text" name="Last&nbsp;Name" id="name" maxlength="32" pattern="[A-Za-z]{1,32}" title="Enter in a valid name.">
 
             <label for="phone_number">Phone Number:</label>
-            <input required type="text" name="phone" id="phone_number" maxlength="10" pattern="[0-9]{10,10}" title="Enter in a valid phone number.">
+            <input required type="text" name="Phone&nbsp;Number" id="phone_number" maxlength="10" pattern="[0-9]{10,10}" title="Enter in a valid phone number.">
 
             <label for="email">Email:</label>
-            <input required type="email" name="email" id="email" placeholder="addicted@pilltakers.com" title="Enter in a valid email.">
+            <input required type="email" name="Email" id="email" placeholder="addicted@pilltakers.com" title="Enter in a valid email.">
 
             <label for="date">Date:</label>
-            <input required type="date" name="date" id="date" min="01/01/2022">
+            <input required type="date" name="Date" id="date" min="01/01/2022">
 
             <label for="class">Issue Type:</label>
-            <select required id="class" name="class">
+            <select required id="class" name="Issue&nbsp;Type">
                 <option value="" selected disabled hidden>Choose here</option>
                 <option value="Account">Account</option>
                 <option value="Schedule">Schedule</option>
@@ -55,7 +61,7 @@
             </select>
             <p></p>
             <label for="message">Message:</label>
-            <textarea required id="message" name="message" rows="6" cols="40"></textarea>
+            <textarea required id="message" name="Message" rows="6" cols="40"></textarea>
 
             <input type="submit" value="Submit">
         </form>
