@@ -13,6 +13,7 @@ const eventTitleInputEdit = document.getElementById('eventTitleInputEdit');
 const deleteEventModal = document.getElementById('deleteEventModal');
 const outputStorage = document.getElementById('outputStorage');
 const eventText = document.getElementById('eventText');
+const eventDosageInputEdit = document.getElementById('eventDosageInputEdit');
 
 function dateConvert(d) {
     const convertDate = new Date(d);
@@ -111,8 +112,8 @@ function onLoad() {
                     }
                 }
             }
-
             dayBox.addEventListener('click',() => openModal(dayString));
+            dayBox.addEventListener('click',() => viewEvents(dayString));
         }else{
             //Class add to denote that this day should NOT be rendered. 
             dayBox.classList.add('blank');
@@ -129,63 +130,41 @@ function onLoad() {
 //Needed to delete or cancel the input for the displayed modal. This also takes into account the need for the input field to be cleared, 
 //as it would save the input for the next time a modal was opened for the given day. 
 function closeModal(){
-    eventTitleInput.classList.remove('error');
     newEventModal.style.display = "none";
     deleteEventModal.style.display = "none";
     backDrop.style.display = "none";
-    eventTitleInput.value = '';
     clicked = null;
+
+    //Needed to clear output.
+    while(outputStorage.firstChild){
+        outputStorage.removeChild(outputStorage.firstChild);
+    };
+
     onLoad();
 }
 
-//Needed to add modal event to array of events, or localStorage 
-function saveEvent(){
-    if(eventTitleInput.value){
-        eventTitleInput.classList.remove('error');
-
-        events.push({date:clicked,title:eventTitleInput.value,});
-
-        localStorage.setItem('events',JSON.stringify(events));
-        closeModal();
-    }else{
-        eventTitleInput.classList.add('error');
-    }
-}
-//
 function addEvent(){
-    if(eventTitleInputEdit.value){
+    if(eventTitleInputEdit.value && eventDosageInputEdit.value){
         eventTitleInputEdit.classList.remove('error');
+        eventDosageInputEdit.classList.remove('error');
 
-        events.push({date:clicked,title:eventTitleInputEdit.value,});
+        events.push({title:eventTitleInputEdit.value,dose:eventDosageInputEdit.value});
 
         localStorage.setItem('events',JSON.stringify(events));
-
-        for (var i = 0;  i < localStorage.length; i++){
-            //Clears the list so multiple displays of the same instance do not occur. 
-            while(outputStorage.firstChild){
-                outputStorage.removeChild(outputStorage.firstChild);
-            }
-            outputStorage.append(localStorage.getItem(localStorage.key(i)));
-        }
-
-        eventTitleInputEdit.value = "";
 
         closeModal();
     }else{
         eventTitleInputEdit.classList.add('error');
+        eventDosageInputEdit.classList.add('error');
     }
 }
 
 function deleteEvent(){
+
     events = events.filter(e => e.date !== clicked);
     localStorage.setItem('events', JSON.stringify(events));
-    localStorage.clear();
-
-    while(outputStorage.firstChild){
-        outputStorage.removeChild(outputStorage.firstChild);
-    }
-
     closeModal();
+
 }
 
 //Add event listeners to buttons, and call load again. Increment/Decrement the global nav variable to navigate the months properly. 
@@ -200,8 +179,6 @@ function initButtons(){
         onLoad();
     });
 
-    document.getElementById('saveButtonEdit').addEventListener('click',addEvent);
-    document.getElementById('saveButton').addEventListener('click', saveEvent);
     document.getElementById('cancelButton').addEventListener('click', closeModal);
 
     document.getElementById('deleteButton').addEventListener('click', deleteEvent);
@@ -214,12 +191,8 @@ function openModal(date){
 
     const eventForDay = events.find(e => e.date === clicked);
 
-    console.log(eventForDay);
-
     //If a perscription already exists on the given day, it will note a perscription is already entered for that day. 
     if(eventForDay){
-        document.getElementById('eventText').innerText = eventForDay.title;
-
         deleteEventModal.style.display = 'block';
     }else{
         newEventModal.style.display = 'block';
@@ -227,7 +200,71 @@ function openModal(date){
     backDrop.style.display = 'block';
 }
 
-//Commit change.
+function viewEvents(date){
+
+    clicked = date;
+
+    const eventForDay = events.find(e => dateConvert(e.date) === clicked);
+    const eventForDayFilter = events.filter(e => dateConvert(e.date) === clicked);
+    const editSaveButton = document.getElementById('saveButtonEdit');
+
+    for(let i = 0; i < eventForDayFilter.length; i++){
+
+        let eventText = document.createElement('h4');
+        let eventDosage = document.createElement('p');
+        let eventTime = document.createElement('p');
+        let eventButton = document.createElement('button');
+
+
+        eventButton.addEventListener('click', () => {
+            newEventModal.style.display = 'none';
+            deleteEventModal.style.display = 'block';
+            eventTitleInputEdit.value = eventForDayFilter[i].title;
+            eventDosageInputEdit.value = eventForDayFilter[i].dose;
+
+            console.log(eventForDayFilter[i]);
+
+            currentIndex = eventForDayFilter.findIndex((obj => obj.title == eventForDayFilter[i].title));
+
+            currentIndex = eventTitleInputEdit.value;
+            currentIndex.dose = eventDosageInputEdit.value;
+
+            console.log(currentIndex);
+
+        });
+
+        editSaveButton.addEventListener('click',() => {
+
+            currentIndex = eventForDayFilter.findIndex((obj => obj.title == eventForDayFilter[i].title));
+
+            console.log(currentIndex);
+
+            for (const obj of events){
+
+                if(obj.title == eventForDayFilter[i].title){
+                    obj.title = eventTitleInputEdit.value;
+                    obj.dose = eventDosageInputEdit.value;
+
+                    break;
+                }
+
+            }
+            closeModal();
+        })
+
+        eventButton.innerText = "Edit";
+        eventText.innerText = eventForDayFilter[i].title;
+        eventDosage.innerText = eventForDayFilter[i].dose;
+        eventTime.innerText = timeConvert(eventForDayFilter[i].date);
+
+        outputStorage.appendChild(eventText);
+        outputStorage.appendChild(eventDosage);
+        outputStorage.appendChild(eventTime);
+        outputStorage.appendChild(eventButton);
+    }
+
+}
+
 loadTestData();
 initButtons();
 onLoad();

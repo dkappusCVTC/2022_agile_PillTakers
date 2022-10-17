@@ -48,19 +48,25 @@
         <!--Modals are not shown until js "turns" them on.-->
 
         <div id="newEventModal">
-            <h2>Add Prescription:</h2>
+            <h2>View Prescriptions:</h2>
+            <p id = "smallText">Please navigate to our <a href="medications.html">Enter Medications Page</a> if you haven't already!</p>
 
-            <input id="eventTitleInput" placeholder="Prescription:"/>
-
-            <button id="saveButton">Save</button>
             <button id="cancelButton">Cancel</button>
+
+            <div id = "outputStorage"></div>
         </div>
 
         <div id="deleteEventModal">
-            <h2>Perscription</h2>
+            <h2>Edit Prescription:</h2>
 
-            <p id="eventText"></p>
+            <label for="eventTitleLabel">Edit Prescription Name: </label>
             <input id="eventTitleInputEdit"/>
+
+            <br>
+            <br>
+
+            <label for="eventDoseLabel">Edit Dosage Amount:</label>
+            <input id="eventDosageInputEdit"/>
 
             <br>
             <br>
@@ -71,7 +77,6 @@
 
             <br>
 
-            <div id = "outputStorage"></div>
         </div>
 
         <div id="modalBackDrop"></div>
