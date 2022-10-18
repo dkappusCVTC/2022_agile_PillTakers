@@ -257,7 +257,7 @@ submit {
 
 @media (max-width: 480px) {
   body {
-    background-image: "url(../images/pilltakerbg.jpg)";
+    background-image: url("../images/pilltakerbg.jpg");
   }
 }
 
@@ -292,12 +292,12 @@ submit {
 
 @media (min-width: 481px) {
   body {
-    background-image: "url(../images/pilltakerbg.jpg)";
+    background-image: url("../images/pilltakerbg.jpg");
   }
 }
 
 @media (min-width: 1025px) {
   body {
-    background-image: "url(../images/pilltakerbg.jpg)";
+    background-image: url("../images/pilltakerbg.jpg");
   }
 }
