@@ -69,10 +69,10 @@ function onLoad() {
     //By moving the month parameter to the subsequent month, we can use the 0 day parameter (which represents the last day of the previous month) to get the amount of max days in a month. 
     //This is needed to know HOW many blocks we will need to create for the calendar to display correctly. 
     const maxDaysInMonth = new Date(year, month + 1, 0).getDate();
-    const firstDayOfTheMonth = new Date(year, month, 1)
+    const firstDayOfTheMonth = new Date(year, month, 1);
 
     //We need to make the weekday available for us to extract and use when determining how many days carry over to the layout from the previous month. 
-    const dateString = firstDayOfTheMonth.toLocaleDateString('en-us',{weekday:'long',year:'numeric',month:'numeric',day:'numeric'})
+    const dateString = firstDayOfTheMonth.toLocaleDateString('en-us',{weekday:'long',year:'numeric',month:'numeric',day:'numeric'});
 
     //Extract the amount of days leftover from the previous month using split. 
     const leftoverDays = weekdays.indexOf(dateString.split(',')[0]);
@@ -138,7 +138,7 @@ function closeModal(){
     //Needed to clear output.
     while(outputStorage.firstChild){
         outputStorage.removeChild(outputStorage.firstChild);
-    };
+    }
 
     onLoad();
 }
@@ -204,7 +204,6 @@ function viewEvents(date){
 
     clicked = date;
 
-    const eventForDay = events.find(e => dateConvert(e.date) === clicked);
     const eventForDayFilter = events.filter(e => dateConvert(e.date) === clicked);
     const editSaveButton = document.getElementById('saveButtonEdit');
 
@@ -222,22 +221,9 @@ function viewEvents(date){
             eventTitleInputEdit.value = eventForDayFilter[i].title;
             eventDosageInputEdit.value = eventForDayFilter[i].dose;
 
-            console.log(eventForDayFilter[i]);
-
-            currentIndex = eventForDayFilter.findIndex((obj => obj.title == eventForDayFilter[i].title));
-
-            currentIndex = eventTitleInputEdit.value;
-            currentIndex.dose = eventDosageInputEdit.value;
-
-            console.log(currentIndex);
-
         });
 
         editSaveButton.addEventListener('click',() => {
-
-            currentIndex = eventForDayFilter.findIndex((obj => obj.title == eventForDayFilter[i].title));
-
-            console.log(currentIndex);
 
             for (const obj of events){
 
@@ -250,7 +236,7 @@ function viewEvents(date){
 
             }
             closeModal();
-        })
+        });
 
         eventButton.innerText = "Edit";
         eventText.innerText = eventForDayFilter[i].title;
