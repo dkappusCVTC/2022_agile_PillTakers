@@ -95,4 +95,5 @@ if (nusername == "" || npassword == "" || nuserFirstName == "" || nuserLastName 
  document.getElementById("currentacctinfo").innerHTML = "Current: " + JSON.stringify(nuser);
  document.getElementById("thankyou").innerHTML = "Saved!";
 }
+}
 // account.html JS Code End
