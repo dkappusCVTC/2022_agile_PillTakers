@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Agile Programming - Team Pill Takers</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="images/medBanner.jpg" alt="images/medBanner.jpg" class="splash" /></a>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="about.html">About/Purpose</a></li>
+            <li><a href="account.html">Create Account</a></li>
+            <li><a href="medications.html">Enter Medications</a></li>
+            <li><a href="medlist.html">Medlist</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <main id="content">
+      <h2>Edit Account Information</h2>
+      <div>
+        <p id="currentacctinfo"></p>
+        <form>
+          <label for="newun">New Username:</label>
+          <input required type="text" name="newun" id="newun" title="enter a new username">
+          
+          <label for="newpw">New Password:</label>
+          <input required type="password" name="newpw" id="newpw" title="enter a new password">
+        
+          <label for="newfn">New First Name:</label>
+          <input required type="text" name="newfn" id="newfn" title="enter a new first name">
+        
+          <label for="newln">New Last Name:</label>
+          <input required type="text" name="newln" id="newln" title="enter a new last name">
+        
+          <label for="newemail">New Email Address:</label>
+          <input required type="email" name="newemail" id="newemail" title="enter a new email address">
+        
+          <input type="button" value="Submit" onclick="saveNewAcctInfo()">
+        </form>
+      </div>
+      <script>
+        const user = JSON.parse(localStorage.getItem("user"));
+        let message = "current: " + JSON.stringify(user);
+        document.getElementById("currentacctinfo").innerHTML = message;
+    </script>
+      <p id="thankyou"></p>
+    </main>
+    <br>
+    <footer>
+        <small>
+            Copyright &copy; 2022 Pill Takers
+            <br>
+            <a href="contact.html">Contact Us</a>
+        </small>
+    </footer>
+    <script src="js/pilltakers.js"></script>
+</body>
+</html>
