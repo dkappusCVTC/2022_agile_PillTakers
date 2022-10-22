@@ -19,6 +19,8 @@ var currentMonth;
 var currentDate;
 var onLoad;
 var ics;
+var eventItem;
+
 
 
 function dateConvert(d) {
@@ -84,27 +86,13 @@ function viewEvents(date) {
         let eventButton = document.createElement('button');
 
 
-        eventButton.addEventListener('click', function (i) {
+        eventButton.addEventListener('click', function () {
             newEventModal.style.display = 'none';
             deleteEventModal.style.display = 'block';
             eventTitleInputEdit.value = eventForDayFilter[i].title;
             eventDosageInputEdit.value = eventForDayFilter[i].dose;
+            eventItem = { 'title': eventTitleInputEdit.value, 'dose': eventDosageInputEdit.value };
 
-        });
-
-        editSaveButton.addEventListener('click', (i) => {
-
-            for (const obj of this.events) {
-
-                if (obj.title === eventForDayFilter[i].title) {
-                    obj.title = eventTitleInputEdit.value;
-                    obj.dose = eventDosageInputEdit.value;
-
-                    break;
-                }
-
-            }
-            this.closeModal();
         });
 
         deleteButton.addEventListener('click',() => {
@@ -118,18 +106,6 @@ function viewEvents(date) {
             location.reload();
         
         });
-    
-        editSaveButton.addEventListener('click',() => {
-    
-            const index = events.findIndex(event => event.title === eventTitleInputEdit.value);
-    
-            events[index].title = eventTitleInputEdit.value;
-    
-            console.log(eventTitleInputEdit.value);
-    
-            closeModal();
-        });
-    
 
         eventButton.innerText = "Edit";
         eventText.innerText = eventForDayFilter[i].title;
@@ -276,6 +252,19 @@ function initButtons() {
 
     document.getElementById('closeButton').addEventListener('click', closeModal);
 
+}
+
+function editMeds() {
+    const index = events.findIndex(event => event.title === eventItem.title);
+    events[index].title = eventTitleInputEdit.value;
+    events[index].dose = eventDosageInputEdit.value;
+
+    localStorage.setItem('events', JSON.stringify(events));
+
+    events = JSON.parse(localStorage.getItem('events'));
+
+
+    closeModal();
 }
 
 initButtons();
