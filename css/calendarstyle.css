@@ -193,6 +193,10 @@ button {
   overflow: hidden;
 }
 
+#monthICS {
+    width: 125px;
+}
+
 /* Important is used to override other styles. */
 .blank {
   cursor: default !important;
