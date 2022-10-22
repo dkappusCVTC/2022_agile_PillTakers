@@ -1,5 +1,32 @@
 /* jshint curly: true, esversion: 6, eqeqeq: true, latedef: true, laxbreak: true */
 // account.html JS Code Start
+var modal2 = document.getElementById("createModal2");
+var modal = document.getElementById("myModal");
+var btn2 = document.getElementById("createbtn");
+var btn = document.getElementById("myBtn");
+var span2 = document.getElementsByClassName("close2")[0];
+var span = document.getElementsByClassName("close")[0];
+btn.style.visibility = "hidden";
+btn2.onclick = function() {
+  modal2.style.display = "block";
+}
+btn.onclick = function() {
+    modal.style.display = "block";
+  }
+span2.onclick = function() {
+  modal2.style.display = "none";
+}
+span.onclick = function() {
+    modal.style.display = "none";
+  }
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+  if (event.target == modal2) {
+    modal2.style.display = "none";
+  }
+}
 function newUser(uname, pwd, fname, lname, e_mail, icon) {
     this.uname = uname;
     this.pwd = pwd;
@@ -18,23 +45,31 @@ function createAccount() {
     var userEmail = document.getElementById("emailtext").value;
     var userFirstName = document.getElementById("firstnametext").value;
     var userLastName = document.getElementById("lastnametext").value;
-    var message = '';
+    
     
     changeIcon();
     
     if (username == "" || password == "" || userFirstName == "" || userLastName == "" || userEmail == "") {
       alert("Please enter the required information.");
-      message = "";
+      
     } else {
-      message = "Thank You " + userFirstName + " " + userLastName + "! Click Enter Medications to add your prescriptions.";
+        document.getElementById("dun").innerHTML = "username: " + username;
+        document.getElementById("dfnln").innerHTML = "name: " + userFirstName + " " + userLastName;
+        document.getElementById("de").innerHTML = "email: " + userEmail;
+  
+    
+         document.getElementById("new").style.visibility = "hidden";
+        btn2.style.visibility = "hidden";
+        modal2.style.display = "none";
+        btn.style.visibility = "visible";
+
+        accounts[acctNumber] = new newUser(username, password, userFirstName, userLastName, userEmail, mainIcon);
+        acctNumber++;
+        user = JSON.stringify(accounts);
+        localStorage.setItem("user", user);
     }
     
-    accounts[acctNumber] = new newUser(username, password, userFirstName, userLastName, userEmail, mainIcon);
-    acctNumber++;
-    user = JSON.stringify(accounts);
-    localStorage.setItem("user", user);
-
-    document.getElementById("message").innerHTML = message;
+  
 
 } // end createAccount()
 // choose profile icon
@@ -77,7 +112,6 @@ function saveNewAcctInfo() {
 
 // get current info
 const user = JSON.parse(localStorage.getItem("user"));
-console.log(user.uname);
 
 var nusername = document.getElementById("newun").value;
 var npassword = document.getElementById("newpw").value;
@@ -88,12 +122,16 @@ var nuserLastName = document.getElementById("newln").value;
 if (nusername == "" || npassword == "" || nuserFirstName == "" || nuserLastName == "" || nuserEmail == "") {
   alert("Please enter the required information or go back to cancel.");
 } else {
- //save new
- var nuser = new newUser(nusername, npassword, nuserFirstName, nuserLastName, nuserEmail);
+    //save new
+    var nuser = new newUser(nusername, npassword, nuserFirstName, nuserLastName, nuserEmail);
   
- localStorage.setItem("editinfo", nuser);
- document.getElementById("currentacctinfo").innerHTML = "Current: " + JSON.stringify(nuser);
- document.getElementById("thankyou").innerHTML = "Saved!";
+    localStorage.setItem("editinfo", nuser);
+    document.getElementById("dun").innerHTML = "username: " + nusername;
+    document.getElementById("dfnln").innerHTML = "name: " + nuserFirstName + " " + nuserLastName;
+    document.getElementById("de").innerHTML = "email: " + nuserEmail;
+    document.getElementById("dpw").innerHTML = "password: " + npassword;
+
+    modal.style.display = "none";
 }
 }
 // account.html JS Code End
