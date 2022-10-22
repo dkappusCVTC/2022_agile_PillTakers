@@ -21,46 +21,102 @@
         </ul>
     </nav>
     <main id="content">
-        <h2>Create your account</h2>
-        <form>
-            <label for="username">Username:</label>
-            <input required type="text" name="username" id="username" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="enter a username">
+        <h3>welcome!</h3>
+        <p id="new">New?</p>
+        <button id="createbtn">Create Account</button>
+        <!-- The Modal -->
+        <div id="createModal2" class="modal2">
+            <div class="modal-content2">
+            <div class="modal-header2">
+                <span class="close2">&times;</span>
+            </div>
+            <div class="modal-body2">
+            <h2>Create your account</h2>
+            <form>
+                <label for="username">Username:</label>
+                <input required type="text" name="username" id="username" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="enter a username">
 
-            <label for="password">Password:</label>
-            <input required type="password" name="password" id="password" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="enter a password">
+                <label for="password">Password:</label>
+                <input required type="password" name="password" id="password" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="enter a password">
 
-            <label for="firstnametext">First Name:</label>
-            <input required type="text" name="firstname" id="firstnametext" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="enter first name">
+                <label for="firstnametext">First Name:</label>
+                <input required type="text" name="firstname" id="firstnametext" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="enter first name">
 
-            <label for="lastnametext">Last Name:</label>
-            <input required type="text" name="lastname" id="lastnametext" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="enter last name">
+                <label for="lastnametext">Last Name:</label>
+                <input required type="text" name="lastname" id="lastnametext" maxlength="32" pattern="[A-Za-z\s]{1,32}" title="enter last name">
 
-            <label for="emailtext">Email:</label>
-            <input required type="email" name="email" id="emailtext" placeholder="addicted@pilltakers.com" title="enter a valid email">
+                <label for="emailtext">Email:</label>
+                <input required type="email" name="email" id="emailtext" placeholder="addicted@pilltakers.com" title="enter a valid email">
 
-            Profile Image:
-            <img src="images/add-user.png" id="mainicon" width="30" height="30" class="mainicon" alt="add user">
-            <select id="icons" name="icons" onclick="changeIcon(this)">
-                <option value="selecticon">select profile icon</option>
-                <option value="007">007</option>
-                <option value="Afro">Afro</option>
-                <option value="Clown">Clown</option>
-                <option value="Cowboy">Cowboy</option>
-                <option value="Doctor">Doctor</option>
-                <option value="Elvis">Elvis</option>
-                <option value="FatherXmas">FatherXmas</option>
-                <option value="Ghost">Ghost</option>
-                <option value="Pirate">Pirate</option>
-                <option value="Policeman">Policeman</option>
-                <option value="Superhero">Superhero</option>
-                <option value="TeddyBear">TeddyBear</option>
+                Profile Image:
+                <img src="images/add-user.png" id="mainicon" width="30" height="30" class="mainicon" alt="add user">
+                <select id="icons" name="icons" onclick="changeIcon(this)">
+                    <option value="selecticon">select profile icon</option>
+                    <option value="007">007</option>
+                    <option value="Afro">Afro</option>
+                    <option value="Clown">Clown</option>
+                    <option value="Cowboy">Cowboy</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Elvis">Elvis</option>
+                    <option value="FatherXmas">FatherXmas</option>
+                    <option value="Ghost">Ghost</option>
+                    <option value="Pirate">Pirate</option>
+                    <option value="Policeman">Policeman</option>
+                    <option value="Superhero">Superhero</option>
+                    <option value="TeddyBear">TeddyBear</option>
                 
-            </select>
+                </select>
             <input type="button" value="Create Account" onclick="createAccount()">
         </form>
+        </div>
+        <div class="modal-footer2">
+        </div>
+      </div>
+    </div>
+     <!-- regular account page -->
+    <div id="defaultaccountpage">
+      <p id="dun"></p>
+      <p id="dfnln"></p>
+      <p id="de"></p>
+      <p id="dpw"></p>
+    </div>
+   
+    <button id="myBtn">Edit Account</button>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+        </div>
+
         
-        <p id="message"></p>
-        <a href="editaccount.html">Edit Account</a>
+        <div class="modal-body">
+          <p>Edit Your Info </p>
+          <form>
+            <label for="newun">New Username:</label>
+            <input required type="text" name="newun" id="newun" title="enter a new username">
+            
+            <label for="newpw">New Password:</label>
+            <input required type="password" name="newpw" id="newpw" title="enter a new password">
+          
+            <label for="newfn">New First Name:</label>
+            <input required type="text" name="newfn" id="newfn" title="enter a new first name">
+          
+            <label for="newln">New Last Name:</label>
+            <input required type="text" name="newln" id="newln" title="enter a new last name">
+          
+            <label for="newemail">New Email Address:</label>
+            <input required type="email" name="newemail" id="newemail" title="enter a new email address">
+          
+            <input type="button" value="Submit" onclick="saveNewAcctInfo()">
+          </form>
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+
+        
+        
     </main>
     <br>
     <footer>
