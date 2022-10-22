@@ -38,22 +38,6 @@ function timeConvert(t) {
     return `${hh.substring(hh.length - 2)}:${mm.substring(mm.length - 2)}`;
 }
 
-function loadTestData() {
-    // Load local storage with test data
-    if (localStorage.getItem('events') === null) {
-        localStorage.setItem('events', JSON.stringify([
-            { "title": "Paxil", "dose": "1 Pill", "date": 1665752400000, "freq": 1, "freqWhen": "freqHours" },
-            { "title": "Viagra", "dose": "1 Pill", "date": 1665748800000, "freq": 1, "freqWhen": "freqHours" },
-            { "title": "Concerta", "dose": "1 Pill", "date": 1665749700000, "freq": 1, "freqWhen": "freqHours" },
-            { "title": "Aleve", "dose": "1 Pill", "date": 1665753300000, "freq": 1, "freqWhen": "freqHours" },
-            { "title": "Focus Factor", "dose": "1 Pill", "date": 1665762600000, "freq": 1, "freqWhen": "freqHours" },
-            { "title": "MultiVitamin", "dose": "1 Pill", "date": 1665763500000, "freq": 1, "freqWhen": "freqHours" }
-        ])
-        );
-        location.reload();
-    }
-}
-
 //Needed to delete or cancel the input for the displayed modal. This also takes into account the need for the input field to be cleared, 
 //as it would save the input for the next time a modal was opened for the given day. 
 function closeModal() {
@@ -122,6 +106,30 @@ function viewEvents(date) {
             }
             this.closeModal();
         });
+
+        deleteButton.addEventListener('click',() => {
+
+            let savedItems = events.filter(eventForDayFilter => eventForDayFilter.title !== eventTitleInputEdit.value);
+    
+            JSON.stringify(savedItems);
+    
+            localStorage.setItem('events', JSON.stringify(savedItems));
+    
+            location.reload();
+        
+        });
+    
+        editSaveButton.addEventListener('click',() => {
+    
+            const index = events.findIndex(event => event.title === eventTitleInputEdit.value);
+    
+            events[index].title = eventTitleInputEdit.value;
+    
+            console.log(eventTitleInputEdit.value);
+    
+            closeModal();
+        });
+    
 
         eventButton.innerText = "Edit";
         eventText.innerText = eventForDayFilter[i].title;
@@ -216,30 +224,6 @@ function onLoad() {
     currentMonth = date;
 }
 
-function addEvent() {
-    if (eventTitleInputEdit.value && eventDosageInputEdit.value) {
-        eventTitleInputEdit.classList.remove('error');
-        eventDosageInputEdit.classList.remove('error');
-
-        events.push({ title: eventTitleInputEdit.value, dose: eventDosageInputEdit.value });
-
-        localStorage.setItem('events', JSON.stringify(events));
-
-        closeModal();
-    } else {
-        eventTitleInputEdit.classList.add('error');
-        eventDosageInputEdit.classList.add('error');
-    }
-}
-
-function deleteEvent() {
-
-    events = events.filter(e => e.date !== clicked);
-    localStorage.setItem('events', JSON.stringify(events));
-    closeModal();
-
-}
-
 function createICS(dateEvent) {
     let cal = ics();
     let launchDate = dateEvent.event === 'Month' ? currentMonth : currentDate;
@@ -290,12 +274,9 @@ function initButtons() {
 
     document.getElementById('cancelButton').addEventListener('click', closeModal);
 
-    document.getElementById('deleteButton').addEventListener('click', deleteEvent);
     document.getElementById('closeButton').addEventListener('click', closeModal);
-
 
 }
 
-loadTestData();
 initButtons();
 onLoad();
