@@ -16,8 +16,10 @@ const outputStorage = document.getElementById('outputStorage');
 const eventText = document.getElementById('eventText');
 const eventDosageInputEdit = document.getElementById('eventDosageInputEdit');
 var currentMonth;
+var currentDate;
 var onLoad;
 var ics;
+
 
 function dateConvert(d) {
     const convertDate = new Date(d);
@@ -71,7 +73,7 @@ function closeModal() {
 //Function to open pop up screen that allows the individual to enter perscription information. 
 function openModal(date) {
     clicked = date;
-
+    currentDate = date;
     const eventForDay = events.find(e => e.date === clicked);
 
     //If a perscription already exists on the given day, it will note a perscription is already entered for that day. 
@@ -238,33 +240,44 @@ function deleteEvent() {
 
 }
 
-function monthICS() {
+function createICS(dateEvent) {
     let cal = ics();
+    let launchDate = dateEvent.event === 'Month' ? currentMonth : currentDate;
+    let icsStoreEvents = [];
+    if (dateEvent.event === 'Month') {
+        // Get the Month start date, and end date
+        let startOfMonth = new Date(launchDate.getFullYear(), launchDate.getMonth(), 1);
+        let endOfMonth = new Date(new Date(startOfMonth.getFullYear(), startOfMonth.getMonth() + 1, 0).getTime() + (24 * 60 * 60 * 1000 - 1));
 
-    // Get the Month start date, and end date
-    let startOfMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
-    let endOfMonth = new Date(new Date(startOfMonth.getFullYear(), startOfMonth.getMonth() + 1, 0).getTime() + (24 * 60 * 60 * 1000 - 1));
+        icsStoreEvents = events.filter(function (event) { return event.date >= startOfMonth.getTime() && event.date <= endOfMonth.getTime(); });
+    }
 
-    let monthEvents = events.filter(function (event) { return event.date >= startOfMonth.getTime() && event.date <= endOfMonth.getTime(); });
-    console.log(monthEvents);
+    if (dateEvent.event === "Daily") {
+        let dayStart = new Date(launchDate).getTime();
+        let dayEnd = dayStart + (24 * 60 * 60 * 1000 - 1);
+
+        icsStoreEvents = events.filter(function (event) { return event.date >= dayStart && event.date <= dayEnd; });
+    }
+
+
 
     // Add Medication event to ICS file
-    for (let i = 0; i < monthEvents.length; i++) {
-        cal.addEvent('Take ' + monthEvents[i].title, monthEvents[i].title + ' - ' + monthEvents[i].dose, '', monthEvents[i].date, monthEvents[i].date + 300000);
+    for (let i = 0; i < icsStoreEvents.length; i++) {
+        cal.addEvent('Take ' + icsStoreEvents[i].title, icsStoreEvents[i].title + ' - ' + icsStoreEvents[i].dose, '', icsStoreEvents[i].date, icsStoreEvents[i].date + 300000);
     }
 
     // Create file name, and download the ics file
-    let icsDate = 'Calendar_' + (Number(new Date().getMonth()) + 1).toString() + '_' +
+    let icsDate = (dateEvent.event === 'Month' ? 'Monthly_' : 'Daily_') + 'Calendar_' + (Number(new Date().getMonth()) + 1).toString() + '_' +
         new Date().getDate().toString() + '_' + new Date().getFullYear().toString().substring(2, 4) +
         '_' + new Date().getHours().toString() + '_' + new Date().getMinutes().toString() +
         '_' + new Date().getSeconds().toString();
+
     cal.download(icsDate);
 
 }
 
 //Add event listeners to buttons, and call load again. Increment/Decrement the global nav variable to navigate the months properly. 
 function initButtons() {
-    document.getElementById('monthICS').addEventListener('click', monthICS);
     document.getElementById('nextButton').addEventListener('click', () => {
         nav++;
         onLoad();

@@ -194,7 +194,11 @@ button {
 }
 
 #monthICS {
-    width: 125px;
+    width: 175px;
+}
+
+#dailyICS {
+    width: 175px;
 }
 
 /* Important is used to override other styles. */

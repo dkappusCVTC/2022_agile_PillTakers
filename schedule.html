@@ -27,7 +27,7 @@
                 <div id = "monthDisplay"></div>
 
                 <div>
-                    <button id="monthICS">Download Calendar</button>
+                    <button id="monthICS" onclick="createICS({'event': 'Month'})">Download Monthly Calendar</button>
                     <button id = "backButton">Back</button>
                     <button id = "nextButton">Next</button>
                 </div>
@@ -53,6 +53,7 @@
             <p id = "smallText">Please navigate to our <a href="medications.html">Enter Medications Page</a> if you haven't already!</p>
 
             <button id="cancelButton">Cancel</button>
+            <button id="dailyICS" onclick="createICS({'event': 'Daily'})">Download Daily Calendar</button>
 
             <div id = "outputStorage"></div>
         </div>
